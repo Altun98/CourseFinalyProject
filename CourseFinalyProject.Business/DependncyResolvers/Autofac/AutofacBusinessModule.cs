@@ -1,0 +1,75 @@
+﻿using Autofac;
+using Autofac.Extras.DynamicProxy;
+using Castle.DynamicProxy;
+using Core.Utilities.Interceptors;
+using CourseFinalyProject.Business.Abstract;
+using CourseFinalyProject.Business.Concrete;
+using CourseFinalyProject.DataAccess.Abstract;
+using CourseFinalyProject.DataAccess.Concrete.EntityFramework;
+using CourseFinalyProject.Entities.Concrete;
+using Microsoft.AspNetCore.Http;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CourseFinalyProject.Business.DependncyResolvers.Autofac
+{
+    public class AutofacBusinessModule : Module
+    {
+        protected override void Load(ContainerBuilder builder)
+        {
+            #region ManagertoService
+            builder.RegisterType<AcademicDegreeManager>().As<IAcademicDegreeService>().SingleInstance();
+            builder.RegisterType<AttestationManager>().As<IAttestationService>().SingleInstance();
+            builder.RegisterType<BloodTypeManager>().As<IBloodTypeService>().SingleInstance();
+            builder.RegisterType<CombatOperationsManager>().As<ICombatOperationsService>().SingleInstance();
+            builder.RegisterType<ConscriptioManager>().As<IConscriptioService>().SingleInstance();
+            builder.RegisterType<DepartamentManager>().As<IDepartamentService>().SingleInstance();
+            builder.RegisterType<DiscountedServiceManager>().As<IDiscountedServiceService>().SingleInstance();
+            builder.RegisterType<DocumentTypeManager>().As<IDocumentTypeService>().SingleInstance();
+            builder.RegisterType<DodtGoAbroadManager>().As<IDodtGoAbroadService>().SingleInstance();
+            builder.RegisterType<EducationManager>().As<IEducationService>().SingleInstance();
+            builder.RegisterType<ExtenstionOFServiceLifeManager>().As<IExtenstionOFServiceLifeService>().SingleInstance();
+            builder.RegisterType<EmployeeDocumentManager>().As<IEmployeeDocumentService>().SingleInstance();
+            builder.RegisterType<EmployeeInfoManager>().As<IEmployeeInfoService>().SingleInstance();
+            builder.RegisterType<EmployeeManager>().As<IEmployeeService>().SingleInstance();
+            builder.RegisterType<FrutherEducationManager>().As<IFrutherEducationService>().SingleInstance();
+            builder.RegisterType<GiveManager>().As<IGiveService>().SingleInstance();
+            builder.RegisterType<LaborActivityManager>().As<ILaborActivityService>().SingleInstance();
+            builder.RegisterType<MilitaryServiceManager>().As<IMilitaryServiceService>().SingleInstance();
+            #endregion
+            #region EfDaltoIDal
+            builder.RegisterType<EfAcademicDegreeDal>().As<IAcademicDegreeDal>().SingleInstance();
+            builder.RegisterType<EfAttestationDal>().As<IAttestationDal>().SingleInstance();
+            builder.RegisterType<EfBloodTypeDal>().As<IBloodTypeDal>().SingleInstance();
+            builder.RegisterType<EfCombatOperationsDal>().As<ICombatOperationsDal>().SingleInstance();
+            builder.RegisterType<EfConscriptionDal>().As<IConscriptioDal>().SingleInstance();
+            builder.RegisterType<EfDepartamentDal>().As<IDepartamentDal>().SingleInstance();
+            builder.RegisterType<EfDiscountedServiceDal>().As<IDiscountedServiceDal>().SingleInstance();
+            builder.RegisterType<EfDocumentTypeDal>().As<IDocumentTypeDal>().SingleInstance();
+            builder.RegisterType<EfDodtGoAbroadDal>().As<IDodtGoAbroadDal>().SingleInstance();
+            builder.RegisterType<EfEducationDal>().As<IEducationDal>().SingleInstance();
+            builder.RegisterType<EfExtenstionOFServiceLifeDal>().As<IExtenstionOFServiceLifeDal>().SingleInstance();
+            builder.RegisterType<EfEmployeeDocumentDal>().As<IEmployeeDocumentDal>().SingleInstance();
+            builder.RegisterType<EfEmployeeInfoDal>().As<IEmployeeInfoDal>().SingleInstance();
+            builder.RegisterType<EfEmployeeDal>().As<IEmployeeDal>().SingleInstance();
+            builder.RegisterType<EfFrutherEducationDal>().As<IFrutherEducationDal>().SingleInstance();
+            builder.RegisterType<EfGiveDal>().As<IGiveDal>().SingleInstance();
+            builder.RegisterType<EfLaborActivityDal>().As<ILaborActivityDal>().SingleInstance();
+            builder.RegisterType<EfMilitaryServiceDal>().As<IMilitaryServiceDal>().SingleInstance();
+            #endregion
+
+
+            builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>();
+            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
+
+            builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
+                .EnableInterfaceInterceptors(new ProxyGenerationOptions()
+                {
+                    Selector = new AspectInterceptorSelector()
+                }).SingleInstance();
+        }
+    }
+}
