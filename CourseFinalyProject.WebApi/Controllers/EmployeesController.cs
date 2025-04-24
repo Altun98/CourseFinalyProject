@@ -1,5 +1,4 @@
-﻿using Core.Aspects.Performance;
-using CourseFinalyProject.Business.Abstract;
+﻿using CourseFinalyProject.Business.Abstract;
 using CourseFinalyProject.Entities.Concrete;
 using CourseFinalyProject.Entities.DTOs.Employee;
 using Microsoft.AspNetCore.Http;

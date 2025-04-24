@@ -8,5 +8,6 @@ namespace CourseFinalyProject.Business.Abstract
 {
     public interface IExtenstionOFServiceLifeService
     {
+        //Xidmet muddetinin uzadilmasi
     }
 }

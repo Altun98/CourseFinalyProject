@@ -11,12 +11,12 @@ namespace CourseFinalyProject.Entities.Concrete
     public class DodtGoAbroad : DocumentEntity, IEntity
     {
         [ForeignKey(nameof(Employee))] public int EmployeeID { get; set; }
-        [ForeignKey(nameof(EmployeeDocument))] public int EmpDocId { get; set; }
+        public DateTime? DocDade { get; set; }
+        public string? DocNumber { get; set; }
         public string Country { get; set; }
         public string? Purpose { get; set; }
         public string? Description { get; set; }
         public bool IsBusinnessTrip { get; set; } = true;
-        public EmployeeDocument EmployeeDocument { get; set; }
-        public Employee Employee { get; set; }
+        [ForeignKey(nameof(Give))] public int GiveID { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Castle.DynamicProxy;
+﻿
+using Castle.DynamicProxy;
 using Core.Extensions;
 using Core.Utilities.Interceptors;
 using Core.Utilities.IoC;
@@ -10,7 +11,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace CourseFinalyProject.Business.BusinessAspects.Autofac
 {
     public class SecuredOperation:MethodInterception
@@ -26,7 +26,7 @@ namespace CourseFinalyProject.Business.BusinessAspects.Autofac
         protected override void OnBefore(IInvocation invocation)
         {
             var roleClaims = _httpContextAccessor.HttpContext.User.ClaimRoles();
-            foreach (var  role in _roles)
+            foreach (var role in _roles)
             {
                 if (roleClaims.Contains(role))
                 {

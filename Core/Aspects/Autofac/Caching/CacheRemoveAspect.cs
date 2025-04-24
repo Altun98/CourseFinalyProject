@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace Core.Aspects.Caching
+namespace Core.Aspects.Autofac.Caching
 {
    public class CacheRemoveAspect:MethodInterception
     {

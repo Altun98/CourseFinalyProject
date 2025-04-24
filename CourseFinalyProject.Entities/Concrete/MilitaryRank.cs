@@ -12,14 +12,12 @@ namespace CourseFinalyProject.Entities.Concrete
     {
         [ForeignKey(nameof(Employee))] public int EmployeeID { get; set; }
         [ForeignKey(nameof(RankType))] public int RankID { get; set; }
-        [ForeignKey(nameof(RankStatus))] public int RankStatusID { get; set; }
+        [ForeignKey(nameof(RankStatus))] public int StatusId { get; set; }
         public string DocNumber { get; set; }
         public DateTime DocDate { get; set; }
-        [ForeignKey(nameof(Give))] public int GiveID { get; set; }
+        [ForeignKey(nameof(Give))] public int GiveId { get; set; }
         public ICollection<Employee> Employees { get; set; } = new List<Employee>();
-        public RankType RankType { get; set; }
+        public ICollection<RankType> RankTypes { get; set; } = new List<RankType>();
         public ICollection<RankStatus> RankStatuses { get; set; } = new List<RankStatus>();
-        public ICollection<Give> Gives { get; set; } = new List<Give>();
-
     }
 }

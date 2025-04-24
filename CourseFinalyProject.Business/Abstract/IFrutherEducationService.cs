@@ -8,5 +8,6 @@ namespace CourseFinalyProject.Business.Abstract
 {
     public interface IFrutherEducationService
     {
+
     }
 }

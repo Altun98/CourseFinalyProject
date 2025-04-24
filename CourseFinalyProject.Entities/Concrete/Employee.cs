@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CourseFinalyProject.Entities.Concrete
 {
-    public class Employee:BaseEntity,IEntity
+    public class Employee : BaseEntity, IEntity
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -15,6 +15,7 @@ namespace CourseFinalyProject.Entities.Concrete
         public string? Patronymic { get; set; }
         public DateTime BirthDate { get; set; }
         public string? BirthPlace { get; set; }
+
         public ICollection<MilitaryService> MilitaryServices { get; set; } = new List<MilitaryService>();
         public ICollection<ExtenstionOFServiceLife> ExtenstionOFServiceLives { get; set; } = new List<ExtenstionOFServiceLife>();
         public ICollection<Attestation> Attestations { get; set; } = new List<Attestation>();
@@ -25,5 +26,6 @@ namespace CourseFinalyProject.Entities.Concrete
         public ICollection<Education> Educations { get; set; } = new List<Education>();
         public ICollection<FrutherEducation> FrutherEducations { get; set; } = new List<FrutherEducation>();
         public ICollection<LaborActivity> laborActivities { get; set; } = new List<LaborActivity>();
+        public ICollection<MilitaryRank> MilitaryRanks { get; set; } = new List<MilitaryRank>();
     }
 }

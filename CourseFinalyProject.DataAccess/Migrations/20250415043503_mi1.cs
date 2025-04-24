@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CourseFinalyProject.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class sa1 : Migration
+    public partial class mi1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -86,6 +86,46 @@ namespace CourseFinalyProject.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MilitaryRanks",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmployeeID = table.Column<int>(type: "int", nullable: false),
+                    RankID = table.Column<int>(type: "int", nullable: false),
+                    StatusId = table.Column<int>(type: "int", nullable: false),
+                    DocNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DocDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    GiveId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MilitaryRanks", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MilitaryServices",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmployeeID = table.Column<int>(type: "int", nullable: false),
+                    DocDade = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DocNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Branch = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Departament = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Position = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsMain = table.Column<bool>(type: "bit", nullable: false),
+                    GiveID = table.Column<int>(type: "int", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MilitaryServices", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OperationClaims",
                 columns: table => new
                 {
@@ -96,6 +136,34 @@ namespace CourseFinalyProject.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OperationClaims", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RankStatuses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StatusName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RankStatuses", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RankTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RankName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RankGroup = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NextTimeRank = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RankTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -137,7 +205,7 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DocumentTypeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmployeeDocumentId = table.Column<int>(type: "int", nullable: false)
+                    EmployeeDocumentId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -146,25 +214,31 @@ namespace CourseFinalyProject.DataAccess.Migrations
                         name: "FK_DocumentType_EmployeeDocuments_EmployeeDocumentId",
                         column: x => x.EmployeeDocumentId,
                         principalTable: "EmployeeDocuments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Gives",
+                name: "ExtenstionOFServiceLives",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    GiveName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmployeeDocumentId = table.Column<int>(type: "int", nullable: false)
+                    EmployeeID = table.Column<int>(type: "int", nullable: false),
+                    DocDade = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DocNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GiveID = table.Column<int>(type: "int", nullable: false),
+                    EmpDocID = table.Column<int>(type: "int", nullable: false),
+                    Item = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Gives", x => x.Id);
+                    table.PrimaryKey("PK_ExtenstionOFServiceLives", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Gives_EmployeeDocuments_EmployeeDocumentId",
-                        column: x => x.EmployeeDocumentId,
+                        name: "FK_ExtenstionOFServiceLives_EmployeeDocuments_EmpDocID",
+                        column: x => x.EmpDocID,
                         principalTable: "EmployeeDocuments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -190,36 +264,6 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     table.PrimaryKey("PK_AcademicDegrees", x => x.Id);
                     table.ForeignKey(
                         name: "FK_AcademicDegrees_Employees_EmployeeID",
-                        column: x => x.EmployeeID,
-                        principalTable: "Employees",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Attestations",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EmployeeID = table.Column<int>(type: "int", nullable: false),
-                    EmpDocId = table.Column<int>(type: "int", nullable: false),
-                    Feedback = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Attestations", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Attestations_EmployeeDocuments_EmpDocId",
-                        column: x => x.EmpDocId,
-                        principalTable: "EmployeeDocuments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Attestations_Employees_EmployeeID",
                         column: x => x.EmployeeID,
                         principalTable: "Employees",
                         principalColumn: "Id",
@@ -286,7 +330,9 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EmployeeID = table.Column<int>(type: "int", nullable: false),
-                    EmpDocId = table.Column<int>(type: "int", nullable: false),
+                    DocDade = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DocNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GiveID = table.Column<int>(type: "int", nullable: false),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Purpose = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -297,12 +343,6 @@ namespace CourseFinalyProject.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DodtGoAbroads", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DodtGoAbroads_EmployeeDocuments_EmpDocId",
-                        column: x => x.EmpDocId,
-                        principalTable: "EmployeeDocuments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_DodtGoAbroads_Employees_EmployeeID",
                         column: x => x.EmployeeID,
@@ -339,36 +379,6 @@ namespace CourseFinalyProject.DataAccess.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Educations_Employees_EmployeeID",
-                        column: x => x.EmployeeID,
-                        principalTable: "Employees",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ExtenstionOFServiceLives",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EmployeeID = table.Column<int>(type: "int", nullable: false),
-                    EmpDocID = table.Column<int>(type: "int", nullable: false),
-                    Item = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ExtenstionOFServiceLives", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ExtenstionOFServiceLives_EmployeeDocuments_EmpDocID",
-                        column: x => x.EmpDocID,
-                        principalTable: "EmployeeDocuments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ExtenstionOFServiceLives_Employees_EmployeeID",
                         column: x => x.EmployeeID,
                         principalTable: "Employees",
                         principalColumn: "Id",
@@ -459,33 +469,25 @@ namespace CourseFinalyProject.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MilitaryServices",
+                name: "EmployeeMilitaryRank",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EmployeeID = table.Column<int>(type: "int", nullable: false),
-                    EmpDocID = table.Column<int>(type: "int", nullable: false),
-                    Branch = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Departament = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Position = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsMain = table.Column<bool>(type: "bit", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    EmployeesId = table.Column<int>(type: "int", nullable: false),
+                    MilitaryRanksId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MilitaryServices", x => x.Id);
+                    table.PrimaryKey("PK_EmployeeMilitaryRank", x => new { x.EmployeesId, x.MilitaryRanksId });
                     table.ForeignKey(
-                        name: "FK_MilitaryServices_EmployeeDocuments_EmpDocID",
-                        column: x => x.EmpDocID,
-                        principalTable: "EmployeeDocuments",
+                        name: "FK_EmployeeMilitaryRank_Employees_EmployeesId",
+                        column: x => x.EmployeesId,
+                        principalTable: "Employees",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MilitaryServices_Employees_EmployeeID",
-                        column: x => x.EmployeeID,
-                        principalTable: "Employees",
+                        name: "FK_EmployeeMilitaryRank_MilitaryRanks_MilitaryRanksId",
+                        column: x => x.MilitaryRanksId,
+                        principalTable: "MilitaryRanks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -512,20 +514,183 @@ namespace CourseFinalyProject.DataAccess.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "EmployeeMilitaryService",
+                columns: table => new
+                {
+                    EmployeesId = table.Column<int>(type: "int", nullable: false),
+                    MilitaryServicesId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeeMilitaryService", x => new { x.EmployeesId, x.MilitaryServicesId });
+                    table.ForeignKey(
+                        name: "FK_EmployeeMilitaryService_Employees_EmployeesId",
+                        column: x => x.EmployeesId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EmployeeMilitaryService_MilitaryServices_MilitaryServicesId",
+                        column: x => x.MilitaryServicesId,
+                        principalTable: "MilitaryServices",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MilitaryRankRankStatus",
+                columns: table => new
+                {
+                    MilitaryRanksId = table.Column<int>(type: "int", nullable: false),
+                    RankStatusesId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MilitaryRankRankStatus", x => new { x.MilitaryRanksId, x.RankStatusesId });
+                    table.ForeignKey(
+                        name: "FK_MilitaryRankRankStatus_MilitaryRanks_MilitaryRanksId",
+                        column: x => x.MilitaryRanksId,
+                        principalTable: "MilitaryRanks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MilitaryRankRankStatus_RankStatuses_RankStatusesId",
+                        column: x => x.RankStatusesId,
+                        principalTable: "RankStatuses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MilitaryRankRankType",
+                columns: table => new
+                {
+                    MilitaryRanksId = table.Column<int>(type: "int", nullable: false),
+                    RankTypesId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MilitaryRankRankType", x => new { x.MilitaryRanksId, x.RankTypesId });
+                    table.ForeignKey(
+                        name: "FK_MilitaryRankRankType_MilitaryRanks_MilitaryRanksId",
+                        column: x => x.MilitaryRanksId,
+                        principalTable: "MilitaryRanks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MilitaryRankRankType_RankTypes_RankTypesId",
+                        column: x => x.RankTypesId,
+                        principalTable: "RankTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EmployeeExtenstionOFServiceLife",
+                columns: table => new
+                {
+                    EmployeesId = table.Column<int>(type: "int", nullable: false),
+                    ExtenstionOFServiceLivesId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeeExtenstionOFServiceLife", x => new { x.EmployeesId, x.ExtenstionOFServiceLivesId });
+                    table.ForeignKey(
+                        name: "FK_EmployeeExtenstionOFServiceLife_Employees_EmployeesId",
+                        column: x => x.EmployeesId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EmployeeExtenstionOFServiceLife_ExtenstionOFServiceLives_ExtenstionOFServiceLivesId",
+                        column: x => x.ExtenstionOFServiceLivesId,
+                        principalTable: "ExtenstionOFServiceLives",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Gives",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GiveName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DodtGoAbroadId = table.Column<int>(type: "int", nullable: true),
+                    EmployeeDocumentId = table.Column<int>(type: "int", nullable: true),
+                    ExtenstionOFServiceLifeId = table.Column<int>(type: "int", nullable: true),
+                    MilitaryServiceId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Gives", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Gives_DodtGoAbroads_DodtGoAbroadId",
+                        column: x => x.DodtGoAbroadId,
+                        principalTable: "DodtGoAbroads",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Gives_EmployeeDocuments_EmployeeDocumentId",
+                        column: x => x.EmployeeDocumentId,
+                        principalTable: "EmployeeDocuments",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Gives_ExtenstionOFServiceLives_ExtenstionOFServiceLifeId",
+                        column: x => x.ExtenstionOFServiceLifeId,
+                        principalTable: "ExtenstionOFServiceLives",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Gives_MilitaryServices_MilitaryServiceId",
+                        column: x => x.MilitaryServiceId,
+                        principalTable: "MilitaryServices",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Attestations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmployeeID = table.Column<int>(type: "int", nullable: false),
+                    DocDade = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DocNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Feedback = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GiveID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Attestations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Attestations_Employees_EmployeeID",
+                        column: x => x.EmployeeID,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Attestations_Gives_GiveID",
+                        column: x => x.GiveID,
+                        principalTable: "Gives",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AcademicDegrees_EmployeeID",
                 table: "AcademicDegrees",
                 column: "EmployeeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Attestations_EmpDocId",
-                table: "Attestations",
-                column: "EmpDocId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Attestations_EmployeeID",
                 table: "Attestations",
                 column: "EmployeeID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Attestations_GiveID",
+                table: "Attestations",
+                column: "GiveID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CombatOperations_EmployeeID",
@@ -555,11 +720,6 @@ namespace CourseFinalyProject.DataAccess.Migrations
                 column: "EmployeeDocumentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DodtGoAbroads_EmpDocId",
-                table: "DodtGoAbroads",
-                column: "EmpDocId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_DodtGoAbroads_EmployeeID",
                 table: "DodtGoAbroads",
                 column: "EmployeeID");
@@ -580,15 +740,14 @@ namespace CourseFinalyProject.DataAccess.Migrations
                 column: "EmpDocID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ExtenstionOFServiceLives_EmployeeID",
-                table: "ExtenstionOFServiceLives",
-                column: "EmployeeID");
+                name: "IX_EmployeeExtenstionOFServiceLife_ExtenstionOFServiceLivesId",
+                table: "EmployeeExtenstionOFServiceLife",
+                column: "ExtenstionOFServiceLivesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EmployeeInfo_BloodID",
                 table: "EmployeeInfo",
-                column: "BloodID",
-                unique: true);
+                column: "BloodID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_EmployeeInfo_EmployeeID",
@@ -596,9 +755,29 @@ namespace CourseFinalyProject.DataAccess.Migrations
                 column: "EmployeeID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EmployeeMilitaryRank_MilitaryRanksId",
+                table: "EmployeeMilitaryRank",
+                column: "MilitaryRanksId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EmployeeMilitaryService_MilitaryServicesId",
+                table: "EmployeeMilitaryService",
+                column: "MilitaryServicesId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_FrutherEducations_EmployeeID",
                 table: "FrutherEducations",
                 column: "EmployeeID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Gives_DodtGoAbroadId",
+                table: "Gives",
+                column: "DodtGoAbroadId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Gives_ExtenstionOFServiceLifeId",
+                table: "Gives",
+                column: "ExtenstionOFServiceLifeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Gives_EmployeeDocumentId",
@@ -606,19 +785,24 @@ namespace CourseFinalyProject.DataAccess.Migrations
                 column: "EmployeeDocumentId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Gives_MilitaryServiceId",
+                table: "Gives",
+                column: "MilitaryServiceId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_LaborActivity_EmployeeID",
                 table: "LaborActivity",
                 column: "EmployeeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MilitaryServices_EmpDocID",
-                table: "MilitaryServices",
-                column: "EmpDocID");
+                name: "IX_MilitaryRankRankStatus_RankStatusesId",
+                table: "MilitaryRankRankStatus",
+                column: "RankStatusesId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MilitaryServices_EmployeeID",
-                table: "MilitaryServices",
-                column: "EmployeeID");
+                name: "IX_MilitaryRankRankType_RankTypesId",
+                table: "MilitaryRankRankType",
+                column: "RankTypesId");
         }
 
         /// <inheritdoc />
@@ -643,25 +827,31 @@ namespace CourseFinalyProject.DataAccess.Migrations
                 name: "DocumentType");
 
             migrationBuilder.DropTable(
-                name: "DodtGoAbroads");
-
-            migrationBuilder.DropTable(
                 name: "Educations");
 
             migrationBuilder.DropTable(
-                name: "ExtenstionOFServiceLives");
+                name: "EmployeeExtenstionOFServiceLife");
 
             migrationBuilder.DropTable(
                 name: "EmployeeInfo");
 
             migrationBuilder.DropTable(
+                name: "EmployeeMilitaryRank");
+
+            migrationBuilder.DropTable(
+                name: "EmployeeMilitaryService");
+
+            migrationBuilder.DropTable(
                 name: "FrutherEducations");
 
             migrationBuilder.DropTable(
-                name: "Gives");
+                name: "LaborActivity");
 
             migrationBuilder.DropTable(
-                name: "LaborActivity");
+                name: "MilitaryRankRankStatus");
+
+            migrationBuilder.DropTable(
+                name: "MilitaryRankRankType");
 
             migrationBuilder.DropTable(
                 name: "OperationClaims");
@@ -673,10 +863,10 @@ namespace CourseFinalyProject.DataAccess.Migrations
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Departaments");
+                name: "Gives");
 
             migrationBuilder.DropTable(
-                name: "MilitaryServices");
+                name: "Departaments");
 
             migrationBuilder.DropTable(
                 name: "EducationTypes");
@@ -685,10 +875,28 @@ namespace CourseFinalyProject.DataAccess.Migrations
                 name: "BloodTypes");
 
             migrationBuilder.DropTable(
-                name: "EmployeeDocuments");
+                name: "RankStatuses");
+
+            migrationBuilder.DropTable(
+                name: "MilitaryRanks");
+
+            migrationBuilder.DropTable(
+                name: "RankTypes");
+
+            migrationBuilder.DropTable(
+                name: "DodtGoAbroads");
+
+            migrationBuilder.DropTable(
+                name: "ExtenstionOFServiceLives");
+
+            migrationBuilder.DropTable(
+                name: "MilitaryServices");
 
             migrationBuilder.DropTable(
                 name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "EmployeeDocuments");
         }
     }
 }

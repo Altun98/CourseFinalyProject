@@ -51,5 +51,10 @@ namespace CourseFinalyProject.Business.Concrete
             var result = _mapper.Map<List<EducationDto>>(emp);
             return new SuccessDateResult<List<EducationDto>>(result);
         }
+
+        public async Task<IDataResult<List<EmployeeEducationDetailsDto>>> GetEmployeeEducationInfo(int empId)
+        {
+            return new SuccessDateResult<List<EmployeeEducationDetailsDto>>(await _education.GetEmployeeEducationInfo(empId));
+        }
     }
 }

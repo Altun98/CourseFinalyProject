@@ -10,6 +10,5 @@ namespace CourseFinalyProject.Entities.Concrete
     public class Give : BaseEntity, IEntity
     {
         public string GiveName { get; set; }
-        public EmployeeDocument EmployeeDocument { get; set; }
     }
 }

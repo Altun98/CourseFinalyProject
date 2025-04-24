@@ -1,5 +1,6 @@
 ﻿using Core.DataAccess;
 using CourseFinalyProject.Entities.Concrete;
+using CourseFinalyProject.Entities.DTOs.Employee;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace CourseFinalyProject.DataAccess.Abstract
 {
     public interface IAttestationDal : IEntityRepository<Attestation>
     {
+        Task<List<EmployeesAttestationDot>> GetEmployeesAttestationsInfo(int empID);
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace CourseFinalyProject.Entities.Concrete
 {
     public class Conscriptio : BaseEntity, IEntity
-    {
+    { //guzestli xidmet
         [ForeignKey(nameof(Employee))] public int EmployeeID { get; set; }
         public int DepartamentID { get; set; }
         public DateTime StartDate { get; set; }
@@ -18,4 +18,4 @@ namespace CourseFinalyProject.Entities.Concrete
         public Employee Employee { get; set; }
         public Departament Departament { get; set; }
     }
-}
+} 

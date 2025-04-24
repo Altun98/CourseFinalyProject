@@ -11,13 +11,15 @@ namespace CourseFinalyProject.Entities.Concrete
     public class MilitaryService : DocumentEntity, IEntity
     {
         [ForeignKey(nameof(Employee))] public int EmployeeID { get; set; }
-        [ForeignKey(nameof(EmployeeDocument))] public int EmpDocID { get; set; }
+        public DateTime? DocDade { get; set; }
+        public string? DocNumber { get; set; }
         public string Branch { get; set; }
         public string? Departament { get; set; }
         public string? Position { get; set; }
         public bool IsMain { get; set; } = true;
-        public Employee Employee { get; set; }
+        [ForeignKey(nameof(Give))] public int GiveID { get; set; }
+        public ICollection<Employee> Employees { get; set; } = new List<Employee>();
         public DiscountedService DiscountedService { get; set; }
-        public EmployeeDocument EmployeeDocument { get; set; }
+
     }
 }

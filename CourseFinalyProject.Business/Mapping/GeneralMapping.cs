@@ -26,6 +26,16 @@ namespace CourseFinalyProject.Business.Mapping
             CreateMap<EducationDto, Education>();
             CreateMap<CombatOperationsDto, CombatOperations>();
             CreateMap<CombatOperations, CombatOperationsDto>();
+            CreateMap<MilitaryRank, MilitaryRankDto>();
+            CreateMap<MilitaryRankDto, MilitaryRank>();
+            CreateMap<Attestation, AttestationDto>();
+            CreateMap<AttestationDto, Attestation>();
+            CreateMap<DodGoAbrodDto, DodtGoAbroad>();
+            CreateMap<DodtGoAbroad, DodGoAbrodDto>();
+            CreateMap<LaborActicityDto, LaborActivity>();
+            CreateMap<LaborActivity, LaborActicityDto>();
+            CreateMap<ConscriptionDto, Conscriptio>();
+            CreateMap<Conscriptio, ConscriptionDto>();
 
         }
     }

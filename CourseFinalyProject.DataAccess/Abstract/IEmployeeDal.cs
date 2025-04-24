@@ -1,5 +1,6 @@
 ﻿using Core.DataAccess;
 using CourseFinalyProject.Entities.Concrete;
+using CourseFinalyProject.Entities.DTOs;
 using CourseFinalyProject.Entities.DTOs.Employee;
 using System;
 using System.Collections.Generic;

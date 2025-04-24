@@ -16,6 +16,7 @@ namespace CourseFinalyProject.Business.Abstract
         Task<IDataResult<List<EducationDto>>> GetAll();
         Task<IResult> EducationDeleted(EducationDto educationDto);
         Task<IResult> EducationUpdate(EducationDto educationDto);
+        Task<IDataResult<List<EmployeeEducationDetailsDto>>> GetEmployeeEducationInfo(int empId);
 
     }
 }

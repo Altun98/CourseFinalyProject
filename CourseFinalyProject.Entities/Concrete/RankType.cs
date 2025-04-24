@@ -10,8 +10,10 @@ namespace CourseFinalyProject.Entities.Concrete
     public class RankType : BaseEntity, IEntity
     {
         public string RankName { get; set; }
-        public string RankGroup { get; set; }
-        public int NextTimeRank { get; set; }
+        public string? RankGroup { get; set; }
+        public int? NextTimeRank { get; set; }
+
+        public ICollection<MilitaryRank> MilitaryRanks { get; set; } = new List<MilitaryRank>();
         
     }
 }

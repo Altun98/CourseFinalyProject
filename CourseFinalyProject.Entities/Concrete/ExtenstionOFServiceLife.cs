@@ -10,11 +10,13 @@ namespace CourseFinalyProject.Entities.Concrete
 {
     public class ExtenstionOFServiceLife : DocumentEntity, IEntity
     {
+        //Xidmetmuddetinin uzadilmasi
         [ForeignKey(nameof(Employee))] public int EmployeeID { get; set; }
-        [ForeignKey(nameof(EmployeeDocument))] public int EmpDocID { get; set; }
+        public DateTime? DocDade { get; set; }
+        public string? DocNumber { get; set; }
+        [ForeignKey(nameof(Give))] public int GiveID { get; set; }
         public string Item { get; set; }
         public string? Description { get; set; }
-        public EmployeeDocument EmployeeDocument { get; set; }
-        public Employee Employee { get; set; }
+        public ICollection<Employee> Employees { get; set; } = new List<Employee>();
     }
 }

@@ -1,13 +1,16 @@
 ﻿using Autofac;
 using Autofac.Extras.DynamicProxy;
+using Business.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
+using Core.Utilities.Security.JWT;
 using CourseFinalyProject.Business.Abstract;
 using CourseFinalyProject.Business.Concrete;
 using CourseFinalyProject.DataAccess.Abstract;
 using CourseFinalyProject.DataAccess.Concrete.EntityFramework;
 using CourseFinalyProject.Entities.Concrete;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +23,11 @@ namespace CourseFinalyProject.Business.DependncyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<UserManager>().As<IUserService>();
+            builder.RegisterType<EfUserDal>().As<IUserDal>();
+
+            builder.RegisterType<AuthManager>().As<IAuthService>();
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>();
             #region ManagertoService
             builder.RegisterType<AcademicDegreeManager>().As<IAcademicDegreeService>().SingleInstance();
             builder.RegisterType<AttestationManager>().As<IAttestationService>().SingleInstance();
@@ -39,6 +47,7 @@ namespace CourseFinalyProject.Business.DependncyResolvers.Autofac
             builder.RegisterType<GiveManager>().As<IGiveService>().SingleInstance();
             builder.RegisterType<LaborActivityManager>().As<ILaborActivityService>().SingleInstance();
             builder.RegisterType<MilitaryServiceManager>().As<IMilitaryServiceService>().SingleInstance();
+            builder.RegisterType<MilitaryRankManager>().As<IMilitaryRankService>().SingleInstance();
             #endregion
             #region EfDaltoIDal
             builder.RegisterType<EfAcademicDegreeDal>().As<IAcademicDegreeDal>().SingleInstance();
@@ -59,6 +68,9 @@ namespace CourseFinalyProject.Business.DependncyResolvers.Autofac
             builder.RegisterType<EfGiveDal>().As<IGiveDal>().SingleInstance();
             builder.RegisterType<EfLaborActivityDal>().As<ILaborActivityDal>().SingleInstance();
             builder.RegisterType<EfMilitaryServiceDal>().As<IMilitaryServiceDal>().SingleInstance();
+            builder.RegisterType<EfMilitaryRankDal>().As<IMilitaryRankDal>().SingleInstance();
+
+
             #endregion
 
 

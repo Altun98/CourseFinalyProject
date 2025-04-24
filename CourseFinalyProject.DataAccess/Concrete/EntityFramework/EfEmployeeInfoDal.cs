@@ -15,6 +15,6 @@ namespace CourseFinalyProject.DataAccess.Concrete.EntityFramework
 {
     public class EfEmployeeInfoDal : EfEntityRepositoryBase<EmployeeInfo, CourseFinalyProjectContext>, IEmployeeInfoDal
     {
-      
-            }
+
+    }
 }

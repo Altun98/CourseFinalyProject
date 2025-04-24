@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace CourseFinalyProject.Entities.Concrete
 {
-    public class DocumentType:BaseEntity,IEntity
+    public class DocumentType : BaseEntity, IEntity
     {
         public string DocumentTypeName { get; set; }
-        public EmployeeDocument EmployeeDocument { get; set; }
     }
 }

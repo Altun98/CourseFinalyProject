@@ -10,5 +10,6 @@ namespace CourseFinalyProject.Entities.Concrete
     public class RankStatus : BaseEntity, IEntity
     {
         public string StatusName { get; set; }
+        public ICollection<MilitaryRank> MilitaryRanks { get; set; } = new List<MilitaryRank>();
     }
 }

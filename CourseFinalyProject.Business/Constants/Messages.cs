@@ -23,9 +23,20 @@ namespace CourseFinalyProject.Business.Constants
         public static string EmployeeInfoAdded = "iscinin etrafli melumatlari elave edildi";
         public static string EmployeeInfoDelete = "iscinin etrafli melumatlari  silindi";
         public static string EmployeeInfoUpdate = "iscinin etrafli melumatlari guncellendi";
-        public static string EducationAdded="Iscinin tehsili  elave edildi";
-        public static string EducationDeleted="Iscinin tehsili barde melumat silindi";
-        public static string EducationUpdate="Iscinin tehsil melumatlari yenilendi";
-        public static string CombatOperationsDeleted="iscinin doyus emeliyyatlari barede melumat silindi";
+        public static string EducationAdded = "Iscinin tehsili  elave edildi";
+        public static string EducationDeleted = "Iscinin tehsili barde melumat silindi";
+        public static string EducationUpdate = "Iscinin tehsil melumatlari yenilendi";
+        public static string CombatOperationsDeleted = "iscinin doyus emeliyyatlari barede melumat silindi";
+        public static string EmployeeRankAdded = "isci ucun rutbe daxil edildi";
+        public static string MilitaryRankDeleted = "iscini rutbesi silindi";
+        public static string MilitaryRankUpdated = "iscinin rutbe melumatlari yenilendi";
+        public static string DodtGoAbrodAdded;
+        public static string DodtGoAbrodDelete;
+        public static string DodtGoAbrodUpdte;
+        public static string LaborActicityAdded;
+        public static string LaborActicityDeleted;
+        public static string LaborActicityUpdated;
+        public static string ConscriptionAdded = "Esgerlik melumati elave edildi";
+        public static string ConscriptionDeleted = "iscinin esgerlik melumatlari silindi";
     }
 }

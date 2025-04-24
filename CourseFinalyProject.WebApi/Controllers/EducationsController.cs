@@ -25,6 +25,14 @@ namespace CourseFinalyProject.WebApi.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("getemployeeducationdetailsinfo")]
+        public async Task<IActionResult> GetemployeeEducationDetailsInfo(int empId)
+        {
+            var edu = await _education.GetEmployeeEducationInfo(empId);
+            if (edu.Success)
+                return Ok(edu);
+            return BadRequest(edu);
+        }
         [HttpPost("added")]
         public async Task<IActionResult> EduAdd(EducationDto education)
         {

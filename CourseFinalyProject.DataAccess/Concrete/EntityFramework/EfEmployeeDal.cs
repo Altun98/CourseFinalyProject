@@ -13,6 +13,7 @@ namespace CourseFinalyProject.DataAccess.Concrete.EntityFramework
 {
     public class EfEmployeeDal : EfEntityRepositoryBase<Employee, CourseFinalyProjectContext>, IEmployeeDal
     {
+
         public List<EmployeeDetailsDto> GetEmployeesDetails()
         {
             using (CourseFinalyProjectContext context = new CourseFinalyProjectContext())

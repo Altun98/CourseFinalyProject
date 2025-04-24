@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourseFinalyProject.DataAccess.Migrations
 {
     [DbContext(typeof(CourseFinalyProjectContext))]
-    [Migration("20250411191644_sa1")]
-    partial class sa1
+    [Migration("20250422054908_mi2")]
+    partial class mi2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -149,27 +149,27 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmpDocId")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("DocDade")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DocNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("EmployeeID")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("EndDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Feedback")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("StartDate")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("GiveID")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmpDocId");
-
                     b.HasIndex("EmployeeID");
+
+                    b.HasIndex("GiveID");
 
                     b.ToTable("Attestations");
                 });
@@ -318,7 +318,7 @@ namespace CourseFinalyProject.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmployeeDocumentId")
+                    b.Property<int?>("EmployeeDocumentId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -343,14 +343,20 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmpDocId")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("DocDade")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DocNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("EmployeeID")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("GiveID")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsBusinnessTrip")
                         .HasColumnType("bit");
@@ -362,8 +368,6 @@ namespace CourseFinalyProject.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EmpDocId");
 
                     b.HasIndex("EmployeeID");
 
@@ -535,8 +539,7 @@ namespace CourseFinalyProject.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BloodID")
-                        .IsUnique();
+                    b.HasIndex("BloodID");
 
                     b.HasIndex("EmployeeID");
 
@@ -554,14 +557,20 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmpDocID")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("DocDade")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DocNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("EmployeeID")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("GiveID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Item")
                         .IsRequired()
@@ -571,10 +580,6 @@ namespace CourseFinalyProject.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EmpDocID");
-
-                    b.HasIndex("EmployeeID");
 
                     b.ToTable("ExtenstionOFServiceLives");
                 });
@@ -627,16 +632,11 @@ namespace CourseFinalyProject.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("EmployeeDocumentId")
-                        .HasColumnType("int");
-
                     b.Property<string>("GiveName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("EmployeeDocumentId");
 
                     b.ToTable("Gives");
                 });
@@ -675,6 +675,38 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.ToTable("LaborActivity");
                 });
 
+            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.MilitaryRank", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DocDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DocNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmployeeID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GiveId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RankID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MilitaryRanks");
+                });
+
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.MilitaryService", b =>
                 {
                     b.Property<int>("Id")
@@ -690,14 +722,20 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.Property<string>("Departament")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmpDocID")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("DocDade")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DocNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("EmployeeID")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("GiveID")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsMain")
                         .HasColumnType("bit");
@@ -710,11 +748,123 @@ namespace CourseFinalyProject.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmpDocID");
-
-                    b.HasIndex("EmployeeID");
-
                     b.ToTable("MilitaryServices");
+                });
+
+            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.RankStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("StatusName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RankStatuses");
+                });
+
+            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.RankType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("NextTimeRank")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RankGroup")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RankName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RankTypes");
+                });
+
+            modelBuilder.Entity("EmployeeExtenstionOFServiceLife", b =>
+                {
+                    b.Property<int>("EmployeesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ExtenstionOFServiceLivesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EmployeesId", "ExtenstionOFServiceLivesId");
+
+                    b.HasIndex("ExtenstionOFServiceLivesId");
+
+                    b.ToTable("EmployeeExtenstionOFServiceLife");
+                });
+
+            modelBuilder.Entity("EmployeeMilitaryRank", b =>
+                {
+                    b.Property<int>("EmployeesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MilitaryRanksId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EmployeesId", "MilitaryRanksId");
+
+                    b.HasIndex("MilitaryRanksId");
+
+                    b.ToTable("EmployeeMilitaryRank");
+                });
+
+            modelBuilder.Entity("EmployeeMilitaryService", b =>
+                {
+                    b.Property<int>("EmployeesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MilitaryServicesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EmployeesId", "MilitaryServicesId");
+
+                    b.HasIndex("MilitaryServicesId");
+
+                    b.ToTable("EmployeeMilitaryService");
+                });
+
+            modelBuilder.Entity("MilitaryRankRankStatus", b =>
+                {
+                    b.Property<int>("MilitaryRanksId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RankStatusesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MilitaryRanksId", "RankStatusesId");
+
+                    b.HasIndex("RankStatusesId");
+
+                    b.ToTable("MilitaryRankRankStatus");
+                });
+
+            modelBuilder.Entity("MilitaryRankRankType", b =>
+                {
+                    b.Property<int>("MilitaryRanksId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RankTypesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MilitaryRanksId", "RankTypesId");
+
+                    b.HasIndex("RankTypesId");
+
+                    b.ToTable("MilitaryRankRankType");
                 });
 
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.AcademicDegree", b =>
@@ -730,21 +880,21 @@ namespace CourseFinalyProject.DataAccess.Migrations
 
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.Attestation", b =>
                 {
-                    b.HasOne("CourseFinalyProject.Entities.Concrete.EmployeeDocument", "EmployeeDocument")
-                        .WithMany("Attestations")
-                        .HasForeignKey("EmpDocId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("CourseFinalyProject.Entities.Concrete.Employee", "Employee")
                         .WithMany("Attestations")
                         .HasForeignKey("EmployeeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("CourseFinalyProject.Entities.Concrete.Give", "Give")
+                        .WithMany()
+                        .HasForeignKey("GiveID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Employee");
 
-                    b.Navigation("EmployeeDocument");
+                    b.Navigation("Give");
                 });
 
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.CombatOperations", b =>
@@ -790,32 +940,18 @@ namespace CourseFinalyProject.DataAccess.Migrations
 
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.DocumentType", b =>
                 {
-                    b.HasOne("CourseFinalyProject.Entities.Concrete.EmployeeDocument", "EmployeeDocument")
+                    b.HasOne("CourseFinalyProject.Entities.Concrete.EmployeeDocument", null)
                         .WithMany("DocumentTypes")
-                        .HasForeignKey("EmployeeDocumentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("EmployeeDocument");
+                        .HasForeignKey("EmployeeDocumentId");
                 });
 
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.DodtGoAbroad", b =>
                 {
-                    b.HasOne("CourseFinalyProject.Entities.Concrete.EmployeeDocument", "EmployeeDocument")
-                        .WithMany("dodtGoAbroads")
-                        .HasForeignKey("EmpDocId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CourseFinalyProject.Entities.Concrete.Employee", "Employee")
+                    b.HasOne("CourseFinalyProject.Entities.Concrete.Employee", null)
                         .WithMany("DodtGoAbroads")
                         .HasForeignKey("EmployeeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Employee");
-
-                    b.Navigation("EmployeeDocument");
                 });
 
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.Education", b =>
@@ -840,8 +976,8 @@ namespace CourseFinalyProject.DataAccess.Migrations
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.EmployeeInfo", b =>
                 {
                     b.HasOne("CourseFinalyProject.Entities.Concrete.BloodType", "BloodType")
-                        .WithOne("EmployeeInfo")
-                        .HasForeignKey("CourseFinalyProject.Entities.Concrete.EmployeeInfo", "BloodID")
+                        .WithMany("EmployeeInfos")
+                        .HasForeignKey("BloodID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -856,25 +992,6 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.ExtenstionOFServiceLife", b =>
-                {
-                    b.HasOne("CourseFinalyProject.Entities.Concrete.EmployeeDocument", "EmployeeDocument")
-                        .WithMany("ExtenstionOFServiceLives")
-                        .HasForeignKey("EmpDocID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CourseFinalyProject.Entities.Concrete.Employee", "Employee")
-                        .WithMany("ExtenstionOFServiceLives")
-                        .HasForeignKey("EmployeeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Employee");
-
-                    b.Navigation("EmployeeDocument");
-                });
-
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.FrutherEducation", b =>
                 {
                     b.HasOne("CourseFinalyProject.Entities.Concrete.Employee", "Employee")
@@ -886,17 +1003,6 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.Give", b =>
-                {
-                    b.HasOne("CourseFinalyProject.Entities.Concrete.EmployeeDocument", "EmployeeDocument")
-                        .WithMany("Gives")
-                        .HasForeignKey("EmployeeDocumentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("EmployeeDocument");
-                });
-
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.LaborActivity", b =>
                 {
                     b.HasOne("CourseFinalyProject.Entities.Concrete.Employee", null)
@@ -906,29 +1012,84 @@ namespace CourseFinalyProject.DataAccess.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.MilitaryService", b =>
+            modelBuilder.Entity("EmployeeExtenstionOFServiceLife", b =>
                 {
-                    b.HasOne("CourseFinalyProject.Entities.Concrete.EmployeeDocument", "EmployeeDocument")
-                        .WithMany("MilitaryServices")
-                        .HasForeignKey("EmpDocID")
+                    b.HasOne("CourseFinalyProject.Entities.Concrete.Employee", null)
+                        .WithMany()
+                        .HasForeignKey("EmployeesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CourseFinalyProject.Entities.Concrete.Employee", "Employee")
-                        .WithMany("MilitaryServices")
-                        .HasForeignKey("EmployeeID")
+                    b.HasOne("CourseFinalyProject.Entities.Concrete.ExtenstionOFServiceLife", null)
+                        .WithMany()
+                        .HasForeignKey("ExtenstionOFServiceLivesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("EmployeeMilitaryRank", b =>
+                {
+                    b.HasOne("CourseFinalyProject.Entities.Concrete.Employee", null)
+                        .WithMany()
+                        .HasForeignKey("EmployeesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Employee");
+                    b.HasOne("CourseFinalyProject.Entities.Concrete.MilitaryRank", null)
+                        .WithMany()
+                        .HasForeignKey("MilitaryRanksId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
-                    b.Navigation("EmployeeDocument");
+            modelBuilder.Entity("EmployeeMilitaryService", b =>
+                {
+                    b.HasOne("CourseFinalyProject.Entities.Concrete.Employee", null)
+                        .WithMany()
+                        .HasForeignKey("EmployeesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CourseFinalyProject.Entities.Concrete.MilitaryService", null)
+                        .WithMany()
+                        .HasForeignKey("MilitaryServicesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MilitaryRankRankStatus", b =>
+                {
+                    b.HasOne("CourseFinalyProject.Entities.Concrete.MilitaryRank", null)
+                        .WithMany()
+                        .HasForeignKey("MilitaryRanksId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CourseFinalyProject.Entities.Concrete.RankStatus", null)
+                        .WithMany()
+                        .HasForeignKey("RankStatusesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MilitaryRankRankType", b =>
+                {
+                    b.HasOne("CourseFinalyProject.Entities.Concrete.MilitaryRank", null)
+                        .WithMany()
+                        .HasForeignKey("MilitaryRanksId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CourseFinalyProject.Entities.Concrete.RankType", null)
+                        .WithMany()
+                        .HasForeignKey("RankTypesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.BloodType", b =>
                 {
-                    b.Navigation("EmployeeInfo")
-                        .IsRequired();
+                    b.Navigation("EmployeeInfos");
                 });
 
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.Employee", b =>
@@ -946,28 +1107,14 @@ namespace CourseFinalyProject.DataAccess.Migrations
 
                     b.Navigation("Educations");
 
-                    b.Navigation("ExtenstionOFServiceLives");
-
                     b.Navigation("FrutherEducations");
-
-                    b.Navigation("MilitaryServices");
 
                     b.Navigation("laborActivities");
                 });
 
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.EmployeeDocument", b =>
                 {
-                    b.Navigation("Attestations");
-
                     b.Navigation("DocumentTypes");
-
-                    b.Navigation("ExtenstionOFServiceLives");
-
-                    b.Navigation("Gives");
-
-                    b.Navigation("MilitaryServices");
-
-                    b.Navigation("dodtGoAbroads");
                 });
 
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.MilitaryService", b =>
