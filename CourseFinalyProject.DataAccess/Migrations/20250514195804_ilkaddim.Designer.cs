@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourseFinalyProject.DataAccess.Migrations
 {
     [DbContext(typeof(CourseFinalyProjectContext))]
-    [Migration("20250422054908_mi2")]
-    partial class mi2
+    [Migration("20250514195804_ilkaddim")]
+    partial class ilkaddim
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -776,11 +776,10 @@ namespace CourseFinalyProject.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("NextTimeRank")
+                    b.Property<int?>("NextTimeRank")
                         .HasColumnType("int");
 
                     b.Property<string>("RankGroup")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RankName")

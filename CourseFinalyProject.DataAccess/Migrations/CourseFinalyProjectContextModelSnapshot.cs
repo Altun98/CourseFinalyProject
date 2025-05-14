@@ -773,11 +773,10 @@ namespace CourseFinalyProject.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("NextTimeRank")
+                    b.Property<int?>("NextTimeRank")
                         .HasColumnType("int");
 
                     b.Property<string>("RankGroup")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RankName")
