@@ -4,7 +4,7 @@ using Core.Utilities.Results.NonData;
 using CourseFinalyProject.Business.Abstract;
 using CourseFinalyProject.DataAccess.Abstract;
 using CourseFinalyProject.Entities.Concrete;
-using CourseFinalyProject.Entities.DTOs;
+using CourseFinalyProject.Entities.DTOs.AttestationDtos;
 using CourseFinalyProject.Entities.DTOs.Employee;
 using System;
 using System.Collections.Generic;
@@ -24,35 +24,35 @@ namespace CourseFinalyProject.Business.Concrete
             _mapper = mapper;
         }
 
-        public async Task<IResult> Added(AttestationDto attestationDto)
+        public async Task<IResult> AddAsync(ResultAttestationDto attestationDto)
         {
             var result = _mapper.Map<Attestation>(attestationDto);
-            await _attestation.Add(result);
+            await _attestation.AddAsync(result);
             return new SuccessResult();
         }
 
-        public async Task<IResult> Deleted(AttestationDto attestationDto)
+        public async Task<IResult> DeleteAsync(ResultAttestationDto attestationDto)
         {
             var result = _mapper.Map<Attestation>(attestationDto);
-            await _attestation.Delete(result);
+            await _attestation.DeleteAsync(result);
             return new SuccessResult();
         }
 
-        public async Task<IDataResult<List<AttestationDto>>> GetAll()
+        public async Task<IDataResult<List<ResultAttestationDto>>> GetAllAsync()
         {
-            var result = _mapper.Map<List<AttestationDto>>(await _attestation.GetAll());
-            return new SuccessDateResult<List<AttestationDto>>(result);
+            var result = _mapper.Map<List<ResultAttestationDto>>(await _attestation.GetAllAsync());
+            return new SuccessDateResult<List<ResultAttestationDto>>(result);
         }
 
-        public async Task<IDataResult<List<EmployeesAttestationDot>>> GetEmployeesAttestationsInfo(int empId)
+        public async Task<IDataResult<List<ResultEmployeesAttestationDot>>> GetEmployeesAttestationsInfoAsync(int empId)
         {
-            return new SuccessDateResult<List<EmployeesAttestationDot>>(await _attestation.GetEmployeesAttestationsInfo(empId));
+            return new SuccessDateResult<List<ResultEmployeesAttestationDot>>(await _attestation.GetEmployeesAttestationsInfo(empId));
         }
 
-        public async Task<IResult> Updated(AttestationDto attestationDto)
+        public async Task<IResult> UpdateAsync(ResultAttestationDto attestationDto)
         {
             var result = _mapper.Map<Attestation>(attestationDto);
-            await _attestation.Update(result);
+            await _attestation.UpdateAsync(result);
             return new SuccessResult();
         }
     }

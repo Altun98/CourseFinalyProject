@@ -13,12 +13,11 @@ namespace Core.Aspects.Autofac.Validation
     public class ValidationAspect:MethodInterception
     {
         private Type _validatorType;
-
         public ValidationAspect(Type validatorType)
         {
             if (!typeof(IValidator).IsAssignableFrom(validatorType))
             {
-                throw new System.Exception("bu  duzgun class deyil");
+                throw new System.Exception("bu duzgun class deyil");
             }
 
             _validatorType = validatorType;

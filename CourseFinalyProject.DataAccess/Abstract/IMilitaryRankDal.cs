@@ -1,6 +1,6 @@
 ﻿using Core.DataAccess;
 using CourseFinalyProject.Entities.Concrete;
-using CourseFinalyProject.Entities.DTOs;
+using CourseFinalyProject.Entities.DTOs.EmployeeDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +12,6 @@ namespace CourseFinalyProject.DataAccess.Abstract
 {
     public interface IMilitaryRankDal : IEntityRepository<MilitaryRank>
     {
-        Task<List<EmployeeRanksInfoDto>> GetEmployeeRankDetails(int empID);
+        Task<List<ResultEmployeeRanksInfoDto>> GetEmployeeRankDetails(int empID);
     }
 }

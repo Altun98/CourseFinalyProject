@@ -5,7 +5,7 @@ using CourseFinalyProject.Business.Abstract;
 using CourseFinalyProject.Business.Constants;
 using CourseFinalyProject.DataAccess.Abstract;
 using CourseFinalyProject.Entities.Concrete;
-using CourseFinalyProject.Entities.DTOs;
+using CourseFinalyProject.Entities.DTOs.CombatOperationsDtos;
 using CourseFinalyProject.Entities.DTOs.Employee;
 using System;
 using System.Collections.Generic;
@@ -25,35 +25,35 @@ namespace CourseFinalyProject.Business.Concrete
             _mapper = mapper;
         }
 
-        public async Task<IResult> Added(CombatOperationsDto combatOperationsDto)
+        public async Task<IResult> AddedAsync(ResultCombatOperationsDto combatOperationsDto)
         {
             var comOp = _mapper.Map<CombatOperations>(combatOperationsDto);
-            await _combatOperations.Add(comOp);
+            await _combatOperations.AddAsync(comOp);
             return new SuccessResult("Elave edildi");
         }
 
-        public async Task<IResult> Delete(CombatOperationsDto combatOperationsDto)
+        public async Task<IResult> DeleteAsync(ResultCombatOperationsDto combatOperationsDto)
         {
             var combat = _mapper.Map<CombatOperations>(combatOperationsDto);
-            await _combatOperations.Delete(combat);
+            await _combatOperations.DeleteAsync(combat);
             return new SuccessResult(Messages.CombatOperationsDeleted);
         }
 
-        public async Task<IDataResult<List<CombatOperationsDto>>> GetAll()
+        public async Task<IDataResult<List<ResultCombatOperationsDto>>> GetAllAsync()
         {
-            var combats = await _combatOperations.GetAll();
-            var result = _mapper.Map<List<CombatOperationsDto>>(combats);
-            return new SuccessDateResult<List<CombatOperationsDto>>(result);
+            var combats = await _combatOperations.GetAllAsync();
+            var result = _mapper.Map<List<ResultCombatOperationsDto>>(combats);
+            return new SuccessDateResult<List<ResultCombatOperationsDto>>(result);
         }
 
-        public async Task<IDataResult<List<CombatOperationsDto>>> GetEmployeeCombatOperation(int employeeId)
+        public async Task<IDataResult<List<ResultCombatOperationsDto>>> GetEmployeeCombatOperationAsync(int employeeId)
         {
-            var combats = await _combatOperations.GetAll(x => x.EmployeeID == employeeId);
-            var result = _mapper.Map<List<CombatOperationsDto>>(combats);
-            return new SuccessDateResult<List<CombatOperationsDto>>(result);
+            var combats = await _combatOperations.GetAllAsync(x => x.EmployeeID == employeeId);
+            var result = _mapper.Map<List<ResultCombatOperationsDto>>(combats);
+            return new SuccessDateResult<List<ResultCombatOperationsDto>>(result);
         }
 
-        public Task<IResult> Update(CombatOperationsDto combatOperationsDto)
+        public Task<IResult> UpdateAsync(ResultCombatOperationsDto combatOperationsDto)
         {
             throw new NotImplementedException();
         }

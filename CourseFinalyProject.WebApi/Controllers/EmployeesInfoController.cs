@@ -19,7 +19,7 @@ namespace CourseFinalyProject.WebApi.Controllers
         [HttpGet("getAll")]
         public async Task<IActionResult> GetAll()
         {
-            var result = await _employeeInfo.GetAll();
+            var result = await _employeeInfo.GetAllAsync();
             if (result.Success)
             {
                 return Ok(result);
@@ -37,9 +37,9 @@ namespace CourseFinalyProject.WebApi.Controllers
             return BadRequest(result);
         }
         [HttpPost("added")]
-        public async Task<IActionResult> Added(EmployeeInfoDto employeeInfoDto)
+        public async Task<IActionResult> Added(ResultEmployeeInfoDto employeeInfoDto)
         {
-            var result = await _employeeInfo.EmployeeInfoAdded(employeeInfoDto);
+            var result = await _employeeInfo.EmployeeInfoAddedAsync(employeeInfoDto);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -47,9 +47,9 @@ namespace CourseFinalyProject.WebApi.Controllers
             return BadRequest(result);
         }
         [HttpDelete("delete")]
-        public async Task<IActionResult> Delete(EmployeeInfoDto employeeInfoDto)
+        public async Task<IActionResult> Delete(ResultEmployeeInfoDto employeeInfoDto)
         {
-            var result = await _employeeInfo.EmployeeInfoDeleted(employeeInfoDto);
+            var result = await _employeeInfo.EmployeeInfoDeletedAsync(employeeInfoDto);
             if (result.Success)
             {
                 return Ok(result.Message);
@@ -60,7 +60,7 @@ namespace CourseFinalyProject.WebApi.Controllers
         [HttpGet("searchbloodType")]
         public async Task<IActionResult> GetSearchBloodTypeID(int bloodID)
         {
-            var result = await _employeeInfo.SearchBloodTypeID(bloodID);
+            var result = await _employeeInfo.GetSearchBloodTypeIdAsync(bloodID);
             if (result.Success)
             {
                 return Ok(result);

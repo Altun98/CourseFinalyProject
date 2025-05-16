@@ -1,6 +1,6 @@
 ﻿using Core.Utilities.Results.Data;
 using Core.Utilities.Results.NonData;
-using CourseFinalyProject.Entities.DTOs;
+using CourseFinalyProject.Entities.DTOs.CombatOperationsDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +11,10 @@ namespace CourseFinalyProject.Business.Abstract
 {
     public interface ICombatOperationsService
     {
-        Task<IDataResult<List<CombatOperationsDto>>> GetAll();
-        Task<IResult> Added(CombatOperationsDto combatOperationsDto);
-        Task<IResult> Delete(CombatOperationsDto combatOperationsDto);
-        Task<IResult> Update(CombatOperationsDto combatOperationsDto);
-        Task<IDataResult<List<CombatOperationsDto>>> GetEmployeeCombatOperation(int employeeId);
+        Task<IDataResult<List<ResultCombatOperationsDto>>> GetAllAsync();
+        Task<IResult> AddedAsync(ResultCombatOperationsDto combatOperationsDto);
+        Task<IResult> DeleteAsync(ResultCombatOperationsDto combatOperationsDto);
+        Task<IResult> UpdateAsync(ResultCombatOperationsDto combatOperationsDto);
+        Task<IDataResult<List<ResultCombatOperationsDto>>> GetEmployeeCombatOperationAsync(int employeeId);
     }
 }

@@ -12,6 +12,6 @@ namespace CourseFinalyProject.DataAccess.Abstract
 {
     public interface IEmployeeDal : IEntityRepository<Employee>
     {
-        List<EmployeeDetailsDto> GetEmployeesDetails();
+        List<ResultEmployeeDetailsDto> GetEmployeesDetails();
     }
 }

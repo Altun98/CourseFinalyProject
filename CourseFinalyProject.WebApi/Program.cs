@@ -1,19 +1,20 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System.Reflection;
-using Autofac.Extensions.DependencyInjection;
-using Autofac;
-using Core.Utilities.Security.JWT;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using Core.Utilities.Security.Encryption;
-using Core.Utilities.IoC;
+﻿using Autofac;
 using Autofac.Core;
-using Core.Extensions;
+using Autofac.Extensions.DependencyInjection;
 using Core.DependencyResolvers;
-using System.Text;
+using Core.Extensions;
+using Core.Utilities.IoC;
+using Core.Utilities.Security.Encryption;
+using Core.Utilities.Security.JWT;
 using CourseFinalyProject.Business.DependncyResolvers.Autofac;
 using CourseFinalyProject.Business.Mapping;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
+using System.Text;
 
 namespace CourseFinalyProject.WebApi
 {
@@ -29,7 +30,7 @@ namespace CourseFinalyProject.WebApi
             //        builder.RegisterModule(new AutofacBusinessModule());
             //    });
             //    builder.Services.Configure<TokenOptions>(builder.Configuration.GetSection("TokenOptions"));
-            //    var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+            //    var tokenOptions = builder.Configuration.GetSection("TokenOptions").GetAsync<TokenOptions>();
             //    builder.Services.AddAuthentication(options =>
             //    {
             //        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -78,7 +79,7 @@ namespace CourseFinalyProject.WebApi
                 builder.RegisterModule(new AutofacBusinessModule());
             });
             //builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            builder.Services.AddAutoMapper(typeof(GeneralMapping));
+            builder.Services.AddAutoMapper(typeof(GeneralMapping).Assembly);
             // TokenOptions konfiqurasiyas?
             builder.Services.Configure<TokenOptions>(builder.Configuration.GetSection("TokenOptions"));
             var tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
@@ -111,6 +112,37 @@ namespace CourseFinalyProject.WebApi
                           .AllowAnyMethod();
                 });
             });
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API", Version = "v1" });
+
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "JWT Token daxil edin: Bearer {token}"
+                });
+
+                // Security requirement - Swagger sorğularına token əlavə olunmasını tələb edir
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+            });
+
             // Servisl?r
             builder.Services.AddDependencyResolvers(new ICoreModule[] { new CoreModule() });
             builder.Services.AddAuthorization();

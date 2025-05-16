@@ -20,24 +20,29 @@ namespace CourseFinalyProject.Business.Concrete
             _userDal = userDal;
         }
 
-        public async Task<IResult> Add(User user)
+        public async Task<IResult> AddAsync(User user)
         {
-            await _userDal.Add(user);
+            await _userDal.AddAsync(user);
             return new SuccessResult();
         }
 
-        public async Task<IDataResult<User>> GetByMail(string email)
+      
+
+        public async Task<IDataResult<User>> GetByMailAsync(string email)
         {
-            var result = await _userDal.Get(u => u.Email == email);
+            var result = await _userDal.GetAsync(u => u.Email == email);
             return new SuccessDateResult<User>(result);
 
         }
 
-        public async Task<IDataResult<List<OperationClaim>>> GetClaims(User user)
+       
+        public async Task<IDataResult<List<OperationClaim>>> GetClaimsAsync(User user)
         {
             var result = await _userDal.GetClaims(user);
             return new SuccessDateResult<List<OperationClaim>>(result);
         }
+
+       
     }
 
 }

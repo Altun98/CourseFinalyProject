@@ -2,8 +2,8 @@
 using CourseFinalyProject.DataAccess.Abstract;
 using CourseFinalyProject.DataAccess.Concrete.EntityFramework.Context;
 using CourseFinalyProject.Entities.Concrete;
-using CourseFinalyProject.Entities.DTOs;
 using CourseFinalyProject.Entities.DTOs.Employee;
+using CourseFinalyProject.Entities.DTOs.EmployeeDtos;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace CourseFinalyProject.DataAccess.Concrete.EntityFramework
 {
     public class EfMilitaryRankDal : EfEntityRepositoryBase<MilitaryRank, CourseFinalyProjectContext>, IMilitaryRankDal
     {
-        public async Task<List<EmployeeRanksInfoDto>> GetEmployeeRankDetails(int empID)
+        public async Task<List<ResultEmployeeRanksInfoDto>> GetEmployeeRankDetails(int empID)
         {
             using (CourseFinalyProjectContext context = new CourseFinalyProjectContext())
             {
@@ -25,7 +25,7 @@ namespace CourseFinalyProject.DataAccess.Concrete.EntityFramework
                            join st in context.RankStatuses on m.StatusId equals st.Id
                            join giv in context.Gives on m.GiveId equals giv.Id
                            where emp.Id == empID
-                           select new EmployeeRanksInfoDto
+                           select new ResultEmployeeRanksInfoDto
                            {
                                Id = m.Id,
                                EmployeeID = emp.Id,

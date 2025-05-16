@@ -2,7 +2,7 @@
 using CourseFinalyProject.DataAccess.Abstract;
 using CourseFinalyProject.DataAccess.Concrete.EntityFramework.Context;
 using CourseFinalyProject.Entities.Concrete;
-using CourseFinalyProject.Entities.DTOs;
+using CourseFinalyProject.Entities.DTOs.ConscriptionDtos;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

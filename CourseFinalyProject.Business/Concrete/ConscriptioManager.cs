@@ -5,7 +5,7 @@ using CourseFinalyProject.Business.Abstract;
 using CourseFinalyProject.Business.Constants;
 using CourseFinalyProject.DataAccess.Abstract;
 using CourseFinalyProject.Entities.Concrete;
-using CourseFinalyProject.Entities.DTOs;
+using CourseFinalyProject.Entities.DTOs.ConscriptionDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,41 +24,41 @@ namespace CourseFinalyProject.Business.Concrete
             _mapper = mapper;
         }
 
-        public async Task<IResult> Added(ConscriptionDto conscriptionDto)
+        public async Task<IResult> AddedAsync(ResultConscriptionDto conscriptionDto)
         {
             var conscriptio = _mapper.Map<Conscriptio>(conscriptionDto);
-            await _conscriptio.Add(conscriptio);
+            await _conscriptio.AddAsync(conscriptio);
             return new SuccessResult(Messages.ConscriptionAdded);
         }
 
-        public async Task<IResult> Deleted(ConscriptionDto conscriptionDto)
+        public async Task<IResult> DeletedAsync(ResultConscriptionDto conscriptionDto)
         {
             var conscriptio = _mapper.Map<Conscriptio>(conscriptionDto);
-            await _conscriptio.Delete(conscriptio);
+            await _conscriptio.DeleteAsync(conscriptio);
             return new SuccessResult(Messages.ConscriptionDeleted);
         }
 
-        public async Task<IDataResult<List<ConscriptionDto>>> GetAll()
+        public async Task<IDataResult<List<ResultConscriptionDto>>> GetAllAsync()
         {
-            var conscriptios = await _conscriptio.GetAll();
-            var result = _mapper.Map<List<ConscriptionDto>>(conscriptios);
-            return new SuccessDateResult<List<ConscriptionDto>>(result);
+            var conscriptios = await _conscriptio.GetAllAsync();
+            var result = _mapper.Map<List<ResultConscriptionDto>>(conscriptios);
+            return new SuccessDateResult<List<ResultConscriptionDto>>(result);
         }
 
-        public async Task<IDataResult<List<ConscriptionDto>>> GetByID(int employeeID)
+        public async Task<IDataResult<List<ResultConscriptionDto>>> GetByIDAsync(int employeeID)
         {
-            var conscriptios = await _conscriptio.GetAll(p => p.EmployeeID == employeeID);
-            var result = _mapper.Map<List<ConscriptionDto>>(conscriptios);
-            return new SuccessDateResult<List<ConscriptionDto>>(result);
+            var conscriptios = await _conscriptio.GetAllAsync(p => p.EmployeeID == employeeID);
+            var result = _mapper.Map<List<ResultConscriptionDto>>(conscriptios);
+            return new SuccessDateResult<List<ResultConscriptionDto>>(result);
         }
 
-        public async Task<IDataResult<List<ConscriptionDepartamentDetailsDto>>> GetDepartamentID(int departamentId)
+        public async Task<IDataResult<List<ConscriptionDepartamentDetailsDto>>> GetDepartamentIdAsync(int departamentId)
         {
             var result = await _conscriptio.GetConscriptionDepartamentDetails(departamentId);
             return new SuccessDateResult<List<ConscriptionDepartamentDetailsDto>>(result);
         }
 
-        public Task<IResult> Updated(ConscriptionDto conscriptionDto)
+        public Task<IResult> UpdatedAsync(ResultConscriptionDto conscriptionDto)
         {
             throw new NotImplementedException();
         }

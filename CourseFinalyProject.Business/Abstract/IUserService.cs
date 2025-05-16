@@ -11,8 +11,8 @@ namespace CourseFinalyProject.Business.Abstract
 {
     public interface IUserService
     {
-        Task<IDataResult<List<OperationClaim>>> GetClaims(User user);
-        Task<IResult> Add(User user);
-        Task<IDataResult<User>> GetByMail(string email);
+        Task<IDataResult<List<OperationClaim>>> GetClaimsAsync(User user);
+        Task<IResult> AddAsync(User user);
+        Task<IDataResult<User>> GetByMailAsync(string email);
     }
 }

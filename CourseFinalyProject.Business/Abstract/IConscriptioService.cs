@@ -1,6 +1,6 @@
 ﻿using Core.Utilities.Results.Data;
 using Core.Utilities.Results.NonData;
-using CourseFinalyProject.Entities.DTOs;
+using CourseFinalyProject.Entities.DTOs.ConscriptionDtos;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,11 +13,11 @@ namespace CourseFinalyProject.Business.Abstract
     public interface IConscriptioService
     {
         // herbi caqris
-        Task<IResult> Added(ConscriptionDto conscriptionDto);
-        Task<IResult> Deleted(ConscriptionDto conscriptionDto);
-        Task<IResult> Updated(ConscriptionDto conscriptionDto);
-        Task<IDataResult<List<ConscriptionDto>>> GetAll();
-        Task<IDataResult<List<ConscriptionDto>>> GetByID(int employeeID);
-        Task<IDataResult<List<ConscriptionDepartamentDetailsDto>>> GetDepartamentID(int departamentId);
+        Task<IResult> AddedAsync(ResultConscriptionDto conscriptionDto);
+        Task<IResult> DeletedAsync(ResultConscriptionDto conscriptionDto);
+        Task<IResult> UpdatedAsync(ResultConscriptionDto conscriptionDto);
+        Task<IDataResult<List<ResultConscriptionDto>>> GetAllAsync();
+        Task<IDataResult<List<ResultConscriptionDto>>> GetByIDAsync(int employeeID);
+        Task<IDataResult<List<ConscriptionDepartamentDetailsDto>>> GetDepartamentIdAsync(int departamentId);
     }    
 }

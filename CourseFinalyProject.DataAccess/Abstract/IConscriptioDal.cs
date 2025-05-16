@@ -1,6 +1,6 @@
 ﻿using Core.DataAccess;
 using CourseFinalyProject.Entities.Concrete;
-using CourseFinalyProject.Entities.DTOs;
+using CourseFinalyProject.Entities.DTOs.ConscriptionDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;

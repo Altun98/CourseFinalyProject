@@ -5,7 +5,7 @@ using CourseFinalyProject.Business.Abstract;
 using CourseFinalyProject.Business.Constants;
 using CourseFinalyProject.DataAccess.Abstract;
 using CourseFinalyProject.Entities.Concrete;
-using CourseFinalyProject.Entities.DTOs;
+using CourseFinalyProject.Entities.DTOs.LaborActicityDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,52 +24,52 @@ namespace CourseFinalyProject.Business.Concrete
             _mapper = mapper;
         }
 
-        public async Task<IResult> Added(LaborActicityDto laborActicityDto)
+        public async Task<IResult> AddedAsync(ResultLaborActicityDto laborActicityDto)
         {
             var result = _mapper.Map<LaborActivity>(laborActicityDto);
-            await _laborActivity.Add(result);
+            await _laborActivity.AddAsync(result);
             return new SuccessResult(Messages.LaborActicityAdded);
         }
 
-        public async Task<IResult> Deleted(LaborActicityDto laborActicityDto)
+        public async Task<IResult> DeletedAsync(ResultLaborActicityDto laborActicityDto)
         {
             var result = _mapper.Map<LaborActivity>(laborActicityDto);
-            await _laborActivity.Delete(result);
+            await _laborActivity.DeleteAsync(result);
             return new SuccessResult(Messages.LaborActicityDeleted);
         }
 
-        public async Task<IDataResult<List<LaborActicityDto>>> GetAll()
+        public async Task<IDataResult<List<ResultLaborActicityDto>>> GetAllAsync()
         {
-            var value = await _laborActivity.GetAll();
-            var result = _mapper.Map<List<LaborActicityDto>>(value);
-            return new SuccessDateResult<List<LaborActicityDto>>(result);
+            var value = await _laborActivity.GetAllAsync();
+            var result = _mapper.Map<List<ResultLaborActicityDto>>(value);
+            return new SuccessDateResult<List<ResultLaborActicityDto>>(result);
         }
 
-        public async Task<IDataResult<List<LaborActicityDto>>> GetByID(int employeeId)
+        public async Task<IDataResult<List<ResultLaborActicityDto>>> GetByIdAsync(int employeeId)
         {
-            var value = await _laborActivity.GetAll(p => p.EmployeeID == employeeId);
-            var result = _mapper.Map<List<LaborActicityDto>>(value);
-            return new SuccessDateResult<List<LaborActicityDto>>(result);
+            var value = await _laborActivity.GetAllAsync(p => p.EmployeeID == employeeId);
+            var result = _mapper.Map<List<ResultLaborActicityDto>>(value);
+            return new SuccessDateResult<List<ResultLaborActicityDto>>(result);
         }
 
-        public async Task<IDataResult<List<LaborActicityDto>>> GetDuty(string duty)
+        public async Task<IDataResult<List<ResultLaborActicityDto>>> GetDutyAsync(string duty)
         {
-            var value = await _laborActivity.GetAll(p => p.Duty == duty);
-            var result = _mapper.Map<List<LaborActicityDto>>(value);
-            return new SuccessDateResult<List<LaborActicityDto>>(result);
+            var value = await _laborActivity.GetAllAsync(p => p.Duty == duty);
+            var result = _mapper.Map<List<ResultLaborActicityDto>>(value);
+            return new SuccessDateResult<List<ResultLaborActicityDto>>(result);
         }
 
-        public async Task<IDataResult<List<LaborActicityDto>>> GetOrganization(string orgName)
+        public async Task<IDataResult<List<ResultLaborActicityDto>>> GetOrganizationAsync(string orgName)
         {
-            var value = await _laborActivity.GetAll(p => p.OrganizationName == orgName);
-            var result = _mapper.Map<List<LaborActicityDto>>(value);
-            return new SuccessDateResult<List<LaborActicityDto>>(result);
+            var value = await _laborActivity.GetAllAsync(p => p.OrganizationName == orgName);
+            var result = _mapper.Map<List<ResultLaborActicityDto>>(value);
+            return new SuccessDateResult<List<ResultLaborActicityDto>>(result);
         }
 
-        public async Task<IResult> Updated(LaborActicityDto laborActicityDto)
+        public async Task<IResult> UpdatedAsync(ResultLaborActicityDto laborActicityDto)
         {
             var result = _mapper.Map<LaborActivity>(laborActicityDto);
-            await _laborActivity.Update(result);
+            await _laborActivity.UpdateAsync(result);
             return new SuccessResult(Messages.LaborActicityUpdated);
         }
     }

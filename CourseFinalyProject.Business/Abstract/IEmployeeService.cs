@@ -2,6 +2,7 @@
 using Core.Utilities.Results.NonData;
 using CourseFinalyProject.Entities.Concrete;
 using CourseFinalyProject.Entities.DTOs.Employee;
+using CourseFinalyProject.Entities.DTOs.EmployeeDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,10 @@ namespace CourseFinalyProject.Business.Abstract
 {
     public interface IEmployeeService
     {
-        Task<IDataResult<List<EmployeeDto>>> GetAll();
-        Task<IDataResult<List<EmployeeDetailsDto>>> GetEmployeeDetails();
-        Task<IResult> EmployeeAdded(EmployeeDto employeeDto);
-        Task<IResult> EmployeeDelete(EmployeeDto employeeDto);
-        Task<IResult> EmployeeUpdate(EmployeeDto employeeDto);
+        Task<IDataResult<List<ResultEmployeeDto>>> GetAllAsync();
+        Task<IDataResult<List<ResultEmployeeDetailsDto>>> GetEmployeeDetailsAsync();
+        Task<IResult> EmployeeAddedAsync(CreateEmployeeDto employeeDto);
+        Task<IResult> EmployeeDeleteAsync(ResultEmployeeDto employeeDto);
+        Task<IResult> EmployeeUpdateAsync(UpdateEmployeeDto employeeDto);
     }
 }

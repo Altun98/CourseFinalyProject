@@ -24,53 +24,53 @@ namespace CourseFinalyProject.Business.Concrete
             _mapper = mapper;
         }
 
-        public async Task<IResult> Add(EmployeeInfoDto employeeInfoDto)
+        public async Task<IResult> Add(ResultEmployeeInfoDto employeeInfoDto)
         {
             var emp = _mapper.Map<EmployeeInfo>(employeeInfoDto);
-            await _employeeInfo.Add(emp);
+            await _employeeInfo.AddAsync(emp);
             return new SuccessResult(Messages.EmployeeInfoAdded);
         }
 
-        public async Task<IResult> EmployeeInfoAdded(EmployeeInfoDto employeeInfoDto)
+        public async Task<IResult> EmployeeInfoAddedAsync(ResultEmployeeInfoDto employeeInfoDto)
         {
             var emp = _mapper.Map<EmployeeInfo>(employeeInfoDto);
-            await _employeeInfo.Add(emp);
+            await _employeeInfo.AddAsync(emp);
             return new SuccessResult(Messages.EmployeeInfoAdded);
         }
 
-        public async Task<IResult> EmployeeInfoDeleted(EmployeeInfoDto employeeInfoDto)
+        public async Task<IResult> EmployeeInfoDeletedAsync(ResultEmployeeInfoDto employeeInfoDto)
         {
             var empDel = _mapper.Map<EmployeeInfo>(employeeInfoDto);
-            await _employeeInfo.Delete(empDel);
+            await _employeeInfo.DeleteAsync(empDel);
             return new SuccessResult(Messages.EmployeeInfoDelete);
         }
 
-        public async Task<IResult> EmployeeInfoUpdate(EmployeeInfoDto employeeInfoDto)
+        public async Task<IResult> EmployeeInfoUpdateAsync(ResultEmployeeInfoDto employeeInfoDto)
         {
             var empUpdate = _mapper.Map<EmployeeInfo>(employeeInfoDto);
-            await _employeeInfo.Update(empUpdate);
+            await _employeeInfo.UpdateAsync(empUpdate);
             return new SuccessResult(Messages.EmployeeInfoUpdate);
         }
 
-        public async Task<IDataResult<List<EmployeeInfoDto>>> GetAll()
+        public async Task<IDataResult<List<ResultEmployeeInfoDto>>> GetAllAsync()
         {
-            var resultEI = await _employeeInfo.GetAll();
-            var resultDto = _mapper.Map<List<EmployeeInfoDto>>(resultEI);
-            return new SuccessDateResult<List<EmployeeInfoDto>>(resultDto, Messages.EmlpoyeesList);
+            var resultEI = await _employeeInfo.GetAllAsync();
+            var resultDto = _mapper.Map<List<ResultEmployeeInfoDto>>(resultEI);
+            return new SuccessDateResult<List<ResultEmployeeInfoDto>>(resultDto, Messages.EmlpoyeesList);
         }
 
-        public async Task<IDataResult<EmployeeInfoDto>> GetById(int id)
+        public async Task<IDataResult<ResultEmployeeInfoDto>> GetById(int id)
         {
-            var emp = await _employeeInfo.Get(e => e.EmployeeID == id);
-            var empDto = _mapper.Map<EmployeeInfoDto>(emp);
-            return new SuccessDateResult<EmployeeInfoDto>(empDto, Messages.EmlpoyeesList);
+            var emp = await _employeeInfo.GetAsync(e => e.EmployeeID == id);
+            var empDto = _mapper.Map<ResultEmployeeInfoDto>(emp);
+            return new SuccessDateResult<ResultEmployeeInfoDto>(empDto, Messages.EmlpoyeesList);
         }
 
-        public async Task<IDataResult<List<EmployeeInfoDto>>> SearchBloodTypeID(int bloodID)
+        public async Task<IDataResult<List<ResultEmployeeInfoDto>>> GetSearchBloodTypeIdAsync(int bloodID)
         {
-            var emp = await _employeeInfo.GetAll(b => b.BloodID == bloodID);
-            var empDto = _mapper.Map<List<EmployeeInfoDto>>(emp);
-            return new SuccessDateResult<List<EmployeeInfoDto>>(empDto, Messages.EmlpoyeesList);
+            var emp = await _employeeInfo.GetAllAsync(b => b.BloodID == bloodID);
+            var empDto = _mapper.Map<List<ResultEmployeeInfoDto>>(emp);
+            return new SuccessDateResult<List<ResultEmployeeInfoDto>>(empDto, Messages.EmlpoyeesList);
         }
     }
 }

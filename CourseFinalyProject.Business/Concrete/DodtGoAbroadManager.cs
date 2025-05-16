@@ -5,7 +5,7 @@ using CourseFinalyProject.Business.Abstract;
 using CourseFinalyProject.Business.Constants;
 using CourseFinalyProject.DataAccess.Abstract;
 using CourseFinalyProject.Entities.Concrete;
-using CourseFinalyProject.Entities.DTOs;
+using CourseFinalyProject.Entities.DTOs.DodGoAbrodDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,51 +23,51 @@ namespace CourseFinalyProject.Business.Concrete
             _dodtGoAbroad = dodtGoAbroad;
             _mapper = mapper;
         }
-        public async Task<IResult> Added(DodGoAbrodDto goAbrodDto)
+        public async Task<IResult> AddedAsync(ResultDodGoAbrodDto goAbrodDto)
         {
             var value = _mapper.Map<DodtGoAbroad>(goAbrodDto);
-            await _dodtGoAbroad.Add(value);
+            await _dodtGoAbroad.AddAsync(value);
             return new SuccessResult(Messages.DodtGoAbrodAdded);
         }
 
-        public async Task<IResult> Deleted(DodGoAbrodDto goAbrodDto)
+        public async Task<IResult> DeletedAsync(ResultDodGoAbrodDto goAbrodDto)
         {
             var value = _mapper.Map<DodtGoAbroad>(goAbrodDto);
-            await _dodtGoAbroad.Delete(value);
+            await _dodtGoAbroad.DeleteAsync(value);
             return new SuccessResult(Messages.DodtGoAbrodDelete);
         }
 
-        public async Task<IDataResult<List<DodGoAbrodDto>>> GetAll()
+        public async Task<IDataResult<List<ResultDodGoAbrodDto>>> GetAllAsync()
         {
-            var result = _mapper.Map<List<DodGoAbrodDto>>(await _dodtGoAbroad.GetAll());
-            return new SuccessDateResult<List<DodGoAbrodDto>>(result);
+            var result = _mapper.Map<List<ResultDodGoAbrodDto>>(await _dodtGoAbroad.GetAllAsync());
+            return new SuccessDateResult<List<ResultDodGoAbrodDto>>(result);
         }
-        public async Task<IResult> Updated(DodGoAbrodDto goAbrodDto)
+        public async Task<IResult> UpdatedAsync(ResultDodGoAbrodDto goAbrodDto)
         {
             var value = _mapper.Map<DodtGoAbroad>(goAbrodDto);
-            await _dodtGoAbroad.Update(value);
+            await _dodtGoAbroad.UpdateAsync(value);
             return new SuccessResult(Messages.DodtGoAbrodUpdte);
         }
 
-        public async Task<IDataResult<List<DodGoAbrodDto>>> GetById(int empid)
+        public async Task<IDataResult<List<ResultDodGoAbrodDto>>> GetByIdAsync(int empid)
         {
-            var value = await _dodtGoAbroad.GetAll(p => p.EmployeeID == empid);
-            var result = _mapper.Map<List<DodGoAbrodDto>>(value);
-            return new SuccessDateResult<List<DodGoAbrodDto>>(result);
+            var value = await _dodtGoAbroad.GetAllAsync(p => p.EmployeeID == empid);
+            var result = _mapper.Map<List<ResultDodGoAbrodDto>>(value);
+            return new SuccessDateResult<List<ResultDodGoAbrodDto>>(result);
         }
 
-        public async Task<IDataResult<List<DodGoAbrodDto>>> GetDataTimeControl(DateTime _start, DateTime _end)
+        public async Task<IDataResult<List<ResultDodGoAbrodDto>>> GetDataTimeControlAsync(DateTime _start, DateTime _end)
         {
-            var value = await _dodtGoAbroad.GetAll(p => p.StartDate >= _start && p.EndDate <= _end);
-            var result = _mapper.Map<List<DodGoAbrodDto>>(value);
-            return new SuccessDateResult<List<DodGoAbrodDto>>(result);
+            var value = await _dodtGoAbroad.GetAllAsync(p => p.StartDate >= _start && p.EndDate <= _end);
+            var result = _mapper.Map<List<ResultDodGoAbrodDto>>(value);
+            return new SuccessDateResult<List<ResultDodGoAbrodDto>>(result);
         }
 
-        public async Task<IDataResult<List<DodGoAbrodDto>>> GetCountry(string country)
+        public async Task<IDataResult<List<ResultDodGoAbrodDto>>> GetCountryAsync(string country)
         {
-            var value = await _dodtGoAbroad.GetAll(p => p.Country == country);
-            var result = _mapper.Map<List<DodGoAbrodDto>>(value);
-            return new SuccessDateResult<List<DodGoAbrodDto>>(result);
+            var value = await _dodtGoAbroad.GetAllAsync(p => p.Country == country);
+            var result = _mapper.Map<List<ResultDodGoAbrodDto>>(value);
+            return new SuccessDateResult<List<ResultDodGoAbrodDto>>(result);
         }
     }
 }

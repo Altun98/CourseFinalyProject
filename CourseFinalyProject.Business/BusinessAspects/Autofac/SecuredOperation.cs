@@ -13,13 +13,12 @@ using System.Text;
 using System.Threading.Tasks;
 namespace CourseFinalyProject.Business.BusinessAspects.Autofac
 {
-    public class SecuredOperation:MethodInterception
+    public class SecuredOperation : MethodInterception
     {
         private string[] _roles;
-        private IHttpContextAccessor _httpContextAccessor;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public SecuredOperation(string roles)
         {
-
             _roles = roles.Split(',');
             _httpContextAccessor = ServiceTool.ServiceProvider.GetService<IHttpContextAccessor>();
         }
@@ -28,10 +27,7 @@ namespace CourseFinalyProject.Business.BusinessAspects.Autofac
             var roleClaims = _httpContextAccessor.HttpContext.User.ClaimRoles();
             foreach (var role in _roles)
             {
-                if (roleClaims.Contains(role))
-                {
-                    return;
-                }
+                if (roleClaims.Contains(role)) { return; }
             }
             throw new Exception(Messages.AuthorizationDenied);
         }

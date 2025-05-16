@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CourseFinalyProject.Business.Abstract;
 using CourseFinalyProject.Entities.Concrete;
-using CourseFinalyProject.Entities.DTOs;
+using CourseFinalyProject.Entities.DTOs.DodGoAbrodDtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +21,7 @@ namespace CourseFinalyProject.WebApi.Controllers
         [HttpGet("getall")]
         public async Task<IActionResult> GetAll()
         {
-            var result = await _dodtGoAbroad.GetAll();
+            var result = await _dodtGoAbroad.GetAllAsync();
             if (result.Success)
                 return Ok(result);
             return BadRequest(result);
@@ -29,7 +29,7 @@ namespace CourseFinalyProject.WebApi.Controllers
         [HttpGet("getbyid")]
         public async Task<IActionResult> GetByID(int empId)
         {
-            var result = await _dodtGoAbroad.GetById(empId);
+            var result = await _dodtGoAbroad.GetByIdAsync(empId);
             if (result.Success)
                 return Ok(result);
             return BadRequest(result);
@@ -37,7 +37,7 @@ namespace CourseFinalyProject.WebApi.Controllers
         [HttpGet("datatimecontrol")]
         public async Task<IActionResult> GetDataControl(DateTime start, DateTime end)
         {
-            var result = await _dodtGoAbroad.GetDataTimeControl(start, end);
+            var result = await _dodtGoAbroad.GetDataTimeControlAsync(start, end);
             if (result.Success)
                 return Ok(result);
             return BadRequest(result);
@@ -45,32 +45,32 @@ namespace CourseFinalyProject.WebApi.Controllers
         [HttpGet("country")]
         public async Task<IActionResult> GetCountry(string country)
         {
-            var result = await _dodtGoAbroad.GetCountry(country);
+            var result = await _dodtGoAbroad.GetCountryAsync(country);
             if (result.Success)
                 return Ok(result);
             return BadRequest(result);
         }
         [HttpPost("added")]
-        public async Task<IActionResult> Added(DodGoAbrodDto goAbrodDto)
+        public async Task<IActionResult> Added(ResultDodGoAbrodDto goAbrodDto)
         {
-            var result = await _dodtGoAbroad.Added(goAbrodDto);
+            var result = await _dodtGoAbroad.AddedAsync(goAbrodDto);
             if (result.Success)
                 return Ok(result);
             return BadRequest(result);
         }
         [HttpPut("updated")]
-        public async Task<IActionResult> Updated(DodGoAbrodDto goAbrodDto)
+        public async Task<IActionResult> Updated(ResultDodGoAbrodDto goAbrodDto)
         {
-            var result = await _dodtGoAbroad.Updated(goAbrodDto);
+            var result = await _dodtGoAbroad.UpdatedAsync(goAbrodDto);
             if (result.Success)
                 return Ok(result);
             return BadRequest(result);
 
         }
         [HttpDelete("deleted")]
-        public async Task<IActionResult> Deleted(DodGoAbrodDto goAbrodDto)
+        public async Task<IActionResult> Deleted(ResultDodGoAbrodDto goAbrodDto)
         {
-            var result = await _dodtGoAbroad.Deleted(goAbrodDto);
+            var result = await _dodtGoAbroad.DeletedAsync(goAbrodDto);
             if (result.Success)
                 return Ok(result);
             return BadRequest(result);

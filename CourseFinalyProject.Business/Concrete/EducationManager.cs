@@ -6,6 +6,7 @@ using CourseFinalyProject.Business.Constants;
 using CourseFinalyProject.DataAccess.Abstract;
 using CourseFinalyProject.Entities.Concrete;
 using CourseFinalyProject.Entities.DTOs.Education;
+using CourseFinalyProject.Entities.DTOs.EmployeeDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,37 +25,37 @@ namespace CourseFinalyProject.Business.Concrete
             _mapper = mapper;
         }
 
-        public async Task<IResult> EducationAdd(EducationDto educationDto)
+        public async Task<IResult> EducationAddAsync(ResultEducationDto educationDto)
         {
             var result = _mapper.Map<Education>(educationDto);
-            await _education.Add(result);
+            await _education.AddAsync(result);
             return new SuccessResult(Messages.EducationAdded);
         }
 
-        public async Task<IResult> EducationDeleted(EducationDto educationDto)
+        public async Task<IResult> EducationDeletedAsync(ResultEducationDto educationDto)
         {
             var result = _mapper.Map<Education>(educationDto);
-            await _education.Delete(result);
+            await _education.DeleteAsync(result);
             return new SuccessResult(Messages.EducationDeleted);
         }
 
-        public async Task<IResult> EducationUpdate(EducationDto educationDto)
+        public async Task<IResult> EducationUpdateAsync(ResultEducationDto educationDto)
         {
             var result = _mapper.Map<Education>(educationDto);
-            await _education.Update(result);
+            await _education.UpdateAsync(result);
             return new SuccessResult(Messages.EducationDeleted);
         }
 
-        public async Task<IDataResult<List<EducationDto>>> GetAll()
+        public async Task<IDataResult<List<ResultEducationDto>>> GetAllAsync()
         {
-            var emp = await _education.GetAll();
-            var result = _mapper.Map<List<EducationDto>>(emp);
-            return new SuccessDateResult<List<EducationDto>>(result);
+            var emp = await _education.GetAllAsync();
+            var result = _mapper.Map<List<ResultEducationDto>>(emp);
+            return new SuccessDateResult<List<ResultEducationDto>>(result);
         }
 
-        public async Task<IDataResult<List<EmployeeEducationDetailsDto>>> GetEmployeeEducationInfo(int empId)
+        public async Task<IDataResult<List<ResultEmployeeEducationDetailsDto>>> GetEmployeeEducationInfoAsync(int empId)
         {
-            return new SuccessDateResult<List<EmployeeEducationDetailsDto>>(await _education.GetEmployeeEducationInfo(empId));
+            return new SuccessDateResult<List<ResultEmployeeEducationDetailsDto>>(await _education.GetEmployeeEducationInfo(empId));
         }
     }
 }

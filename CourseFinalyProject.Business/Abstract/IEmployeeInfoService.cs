@@ -11,12 +11,12 @@ namespace CourseFinalyProject.Business.Abstract
 {
     public interface IEmployeeInfoService
     {
-        Task<IDataResult<List<EmployeeInfoDto>>> GetAll();
-        Task<IDataResult<EmployeeInfoDto>> GetById(int id);
-        Task<IDataResult<List<EmployeeInfoDto>>> SearchBloodTypeID(int bloodID);
-        Task<IResult> EmployeeInfoAdded(EmployeeInfoDto employeeInfoDto);
-        Task<IResult> EmployeeInfoDeleted(EmployeeInfoDto employeeInfoDto);
-        Task<IResult> EmployeeInfoUpdate(EmployeeInfoDto employeeInfoDto);
+        Task<IDataResult<List<ResultEmployeeInfoDto>>> GetAllAsync();
+        Task<IDataResult<ResultEmployeeInfoDto>> GetById(int id);
+        Task<IDataResult<List<ResultEmployeeInfoDto>>> GetSearchBloodTypeIdAsync(int bloodID);
+        Task<IResult> EmployeeInfoAddedAsync(ResultEmployeeInfoDto employeeInfoDto);
+        Task<IResult> EmployeeInfoDeletedAsync(ResultEmployeeInfoDto employeeInfoDto);
+        Task<IResult> EmployeeInfoUpdateAsync(ResultEmployeeInfoDto employeeInfoDto);
 
     }
 }

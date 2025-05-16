@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CourseFinalyProject.Business.ValidationRules.FluentValidation
 {
-    public class EmployeValidation : AbstractValidator<EmployeeDto>
+    public class EmployeValidation : AbstractValidator<ResultEmployeeDto>
     {
         public EmployeValidation()
         {

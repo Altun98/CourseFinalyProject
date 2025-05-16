@@ -1,7 +1,7 @@
 ﻿using Core.Utilities.Results.Data;
 using Core.Utilities.Results.NonData;
 using CourseFinalyProject.Entities.Concrete;
-using CourseFinalyProject.Entities.DTOs;
+using CourseFinalyProject.Entities.DTOs.DodGoAbrodDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +13,12 @@ namespace CourseFinalyProject.Business.Abstract
     public interface IDodtGoAbroadService
     {
         //xarice getme
-        Task<IResult> Added(DodGoAbrodDto goAbrodDto);
-        Task<IResult> Deleted(DodGoAbrodDto goAbrodDto);
-        Task<IResult> Updated(DodGoAbrodDto goAbrodDto);
-        Task<IDataResult<List<DodGoAbrodDto>>> GetAll();
-        Task<IDataResult<List<DodGoAbrodDto>>> GetById(int empid);
-        Task<IDataResult<List<DodGoAbrodDto>>> GetDataTimeControl(DateTime _start, DateTime _end);
-        Task<IDataResult<List<DodGoAbrodDto>>> GetCountry(string country);
+        Task<IResult> AddedAsync(ResultDodGoAbrodDto goAbrodDto);
+        Task<IResult> DeletedAsync(ResultDodGoAbrodDto goAbrodDto);
+        Task<IResult> UpdatedAsync(ResultDodGoAbrodDto goAbrodDto);
+        Task<IDataResult<List<ResultDodGoAbrodDto>>> GetAllAsync();
+        Task<IDataResult<List<ResultDodGoAbrodDto>>> GetByIdAsync(int empid);
+        Task<IDataResult<List<ResultDodGoAbrodDto>>> GetDataTimeControlAsync(DateTime _start, DateTime _end);
+        Task<IDataResult<List<ResultDodGoAbrodDto>>> GetCountryAsync(string country);
     }
 }

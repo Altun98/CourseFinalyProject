@@ -1,6 +1,6 @@
 ﻿using CourseFinalyProject.Business.Abstract;
 using CourseFinalyProject.Entities.Concrete;
-using CourseFinalyProject.Entities.DTOs;
+using CourseFinalyProject.Entities.DTOs.AttestationDtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -19,15 +19,15 @@ namespace CourseFinalyProject.WebApi.Controllers
         [HttpGet("getall")]
         public async Task<IActionResult> GetAll()
         {
-            var result =await _attestation.GetAll();
+            var result =await _attestation.GetAllAsync();
             if (result.Success)
                 return Ok(result);
             return BadRequest(result);
         }
         [HttpPost("added")]
-        public async Task<IActionResult> Added(AttestationDto attestationDto)
+        public async Task<IActionResult> Added(ResultAttestationDto attestationDto)
         {
-            var result = await _attestation.Added(attestationDto);
+            var result = await _attestation.AddAsync(attestationDto);
             if (result.Success)
                 return Ok(result);
             return BadRequest(result);
@@ -35,7 +35,7 @@ namespace CourseFinalyProject.WebApi.Controllers
         [HttpGet("employeattestationdetails")]
         public async Task<IActionResult> GetEmpAttList(int empId)
         {
-            var result = await _attestation.GetEmployeesAttestationsInfo(empId);
+            var result = await _attestation.GetEmployeesAttestationsInfoAsync(empId);
             if (result.Success)
                 return Ok(result);
             return BadRequest(result);

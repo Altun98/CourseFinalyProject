@@ -1,5 +1,5 @@
 ﻿using CourseFinalyProject.Business.Abstract;
-using CourseFinalyProject.Entities.DTOs;
+using CourseFinalyProject.Entities.DTOs.ConscriptionDtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +17,7 @@ namespace CourseFinalyProject.WebApi.Controllers
         [HttpGet("getall")]
         public async Task<IActionResult> GetAll()
         {
-            var value = await _conscriptioService.GetAll();
+            var value = await _conscriptioService.GetAllAsync();
             if (value.Success)
                 return Ok(value);
             return BadRequest(value);
@@ -25,7 +25,7 @@ namespace CourseFinalyProject.WebApi.Controllers
         [HttpGet("getbyid")]
         public async Task<IActionResult> GetById(int employeeId)
         {
-            var value = await _conscriptioService.GetByID(employeeId);
+            var value = await _conscriptioService.GetByIDAsync(employeeId);
             if (value.Success)
                 return Ok(value);
             return BadRequest(value);
@@ -33,15 +33,15 @@ namespace CourseFinalyProject.WebApi.Controllers
         [HttpGet("getdeparyament")]
         public async Task<IActionResult> GetDepartamentDetails(int departamentId)
         {
-            var value = await _conscriptioService.GetDepartamentID(departamentId);
+            var value = await _conscriptioService.GetDepartamentIdAsync(departamentId);
             if (value.Success)
                 return Ok(value);
             return BadRequest(value);
         }
         [HttpPost("added")]
-        public async Task<IActionResult> Added(ConscriptionDto conscriptionDto)
+        public async Task<IActionResult> Added(ResultConscriptionDto conscriptionDto)
         {
-            var value = await _conscriptioService.Added(conscriptionDto);
+            var value = await _conscriptioService.AddedAsync(conscriptionDto);
             if (value.Success)
                 return Ok(value);
             return BadRequest(value);
@@ -49,19 +49,19 @@ namespace CourseFinalyProject.WebApi.Controllers
         [HttpDelete("deleted")]
         public async Task<IActionResult> Deleted(int employeeId)
         {
-            var value = await _conscriptioService.GetByID(employeeId);
+            var value = await _conscriptioService.GetByIDAsync(employeeId);
             foreach (var item in value.Data)
             {
-                var result = _conscriptioService.Deleted(item);
+                var result = _conscriptioService.DeletedAsync(item);
             }
             if (value.Success)
                 return Ok(value);
             return BadRequest(value);
         }
         [HttpPut("updated")]
-        public async Task<IActionResult> Updated(ConscriptionDto conscriptionDto)
+        public async Task<IActionResult> Updated(ResultConscriptionDto conscriptionDto)
         {
-            var value = await _conscriptioService.Updated(conscriptionDto);
+            var value = await _conscriptioService.UpdatedAsync(conscriptionDto);
             if (value.Success)
                 return Ok(value);
             return BadRequest(value);

@@ -5,8 +5,9 @@ using CourseFinalyProject.Business.Abstract;
 using CourseFinalyProject.Business.Constants;
 using CourseFinalyProject.DataAccess.Abstract;
 using CourseFinalyProject.Entities.Concrete;
-using CourseFinalyProject.Entities.DTOs;
 using CourseFinalyProject.Entities.DTOs.Employee;
+using CourseFinalyProject.Entities.DTOs.EmployeeDtos;
+using CourseFinalyProject.Entities.DTOs.MilitaryRankDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,43 +27,43 @@ namespace CourseFinalyProject.Business.Concrete
             _mapper = mapper;
         }
 
-        public async Task<IDataResult<List<MilitaryRankDto>>> GetAll()
+        public async Task<IDataResult<List<ResultMilitaryRankDto>>> GetAllAsync()
         {
-            var ranks = await _rankDal.GetAll();
-            var result = _mapper.Map<List<MilitaryRankDto>>(ranks);
-            return new SuccessDateResult<List<MilitaryRankDto>>( result);
+            var ranks = await _rankDal.GetAllAsync();
+            var result = _mapper.Map<List<ResultMilitaryRankDto>>(ranks);
+            return new SuccessDateResult<List<ResultMilitaryRankDto>>( result);
         }
 
-        public async Task<IDataResult<List<MilitaryRankDto>>> GetEmployeeRanksInfo(int empID)
+        public async Task<IDataResult<List<ResultMilitaryRankDto>>> GetEmployeeRanksInfoAsync(int empID)
         {
-            var ranks = await _rankDal.GetAll(p => p.EmployeeID == empID);
-            var result = _mapper.Map<List<MilitaryRankDto>>(ranks);
-            return new SuccessDateResult<List<MilitaryRankDto>>(result);
+            var ranks = await _rankDal.GetAllAsync(p => p.EmployeeID == empID);
+            var result = _mapper.Map<List<ResultMilitaryRankDto>>(ranks);
+            return new SuccessDateResult<List<ResultMilitaryRankDto>>(result);
         }
 
-        public async Task<IDataResult<List<EmployeeRanksInfoDto>>> GetRankSEmployeeDetailsInfo(int empID)
+        public async Task<IDataResult<List<ResultEmployeeRanksInfoDto>>> GetRankSEmployeeDetailsInfoAsync(int empID)
         {
-            return new SuccessDateResult<List<EmployeeRanksInfoDto>>(await _rankDal.GetEmployeeRankDetails(empID));
+            return new SuccessDateResult<List<ResultEmployeeRanksInfoDto>>(await _rankDal.GetEmployeeRankDetails(empID));
         }
 
-        public async Task<IResult> MilitaryRankAdded(MilitaryRankDto militaryRankDto)
+        public async Task<IResult> MilitaryRankAddedAsycn(ResultMilitaryRankDto militaryRankDto)
         {
             var rank = _mapper.Map<MilitaryRank>(militaryRankDto);
-            await _rankDal.Add(rank);
+            await _rankDal.AddAsync(rank);
             return new SuccessResult(Messages.EmployeeRankAdded);
         }
 
-        public async Task<IResult> MilitaryRankdeleted(MilitaryRankDto militaryRankDto)
+        public async Task<IResult> MilitaryRankdeletedAsync(ResultMilitaryRankDto militaryRankDto)
         {
             var rank = _mapper.Map<MilitaryRank>(militaryRankDto);
-            await _rankDal.Delete(rank);
+            await _rankDal.DeleteAsync(rank);
             return new SuccessResult(Messages.MilitaryRankDeleted);
         }
 
-        public async Task<IResult> MilitaryRankUpdate(MilitaryRankDto militaryRankDto)
+        public async Task<IResult> MilitaryRankUpdateAsycn(ResultMilitaryRankDto militaryRankDto)
         {
             var rank = _mapper.Map<MilitaryRank>(militaryRankDto);
-            await _rankDal.Update(rank);
+            await _rankDal.UpdateAsync(rank);
             return new SuccessResult(Messages.MilitaryRankUpdated);
         }
     }

@@ -11,6 +11,6 @@ namespace CourseFinalyProject.DataAccess.Abstract
 {
     public interface IAttestationDal : IEntityRepository<Attestation>
     {
-        Task<List<EmployeesAttestationDot>> GetEmployeesAttestationsInfo(int empID);
+        Task<List<ResultEmployeesAttestationDot>> GetEmployeesAttestationsInfo(int empID);
     }
 }

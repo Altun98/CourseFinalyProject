@@ -14,7 +14,7 @@ namespace CourseFinalyProject.DataAccess.Concrete.EntityFramework
 {
     public class EfAttestationDal : EfEntityRepositoryBase<Attestation, CourseFinalyProjectContext>, IAttestationDal
     {
-        public async Task<List<EmployeesAttestationDot>> GetEmployeesAttestationsInfo(int empID)
+        public async Task<List<ResultEmployeesAttestationDot>> GetEmployeesAttestationsInfo(int empID)
         {
             using (CourseFinalyProjectContext context=new CourseFinalyProjectContext())
             {
@@ -24,7 +24,7 @@ namespace CourseFinalyProject.DataAccess.Concrete.EntityFramework
                              join
                              giv in context.Gives on att.GiveID equals giv.Id
                              where att.EmployeeID == empID
-                             select new EmployeesAttestationDot
+                             select new ResultEmployeesAttestationDot
                              {
                                  Id = att.Id,
                                  EmployeeID = emp.Id,

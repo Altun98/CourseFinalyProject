@@ -1,6 +1,6 @@
 ﻿using Core.DataAccess;
 using CourseFinalyProject.Entities.Concrete;
-using CourseFinalyProject.Entities.DTOs.Education;
+using CourseFinalyProject.Entities.DTOs.EmployeeDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +11,6 @@ namespace CourseFinalyProject.DataAccess.Abstract
 {
   public  interface IEducationDal:IEntityRepository<Education>
     {
-        Task<List<EmployeeEducationDetailsDto>> GetEmployeeEducationInfo(int empID);
+        Task<List<ResultEmployeeEducationDetailsDto>> GetEmployeeEducationInfo(int empID);
     }
 }

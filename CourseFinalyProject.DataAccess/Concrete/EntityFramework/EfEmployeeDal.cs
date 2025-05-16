@@ -14,14 +14,14 @@ namespace CourseFinalyProject.DataAccess.Concrete.EntityFramework
     public class EfEmployeeDal : EfEntityRepositoryBase<Employee, CourseFinalyProjectContext>, IEmployeeDal
     {
 
-        public List<EmployeeDetailsDto> GetEmployeesDetails()
+        public List<ResultEmployeeDetailsDto> GetEmployeesDetails()
         {
             using (CourseFinalyProjectContext context = new CourseFinalyProjectContext())
             {
                 var info = from i in context.EmployeeInfo
                            join e in context.Employees on i.EmployeeID equals e.Id
                            join b in context.BloodTypes on i.BloodID equals b.Id
-                           select new EmployeeDetailsDto
+                           select new ResultEmployeeDetailsDto
                            {
                                FirstName = e.FirstName,
                                LastName = e.LastName,

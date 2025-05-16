@@ -11,6 +11,7 @@ using CourseFinalyProject.Business.ValidationRules.FluentValidation;
 using CourseFinalyProject.DataAccess.Abstract;
 using CourseFinalyProject.Entities.Concrete;
 using CourseFinalyProject.Entities.DTOs.Employee;
+using CourseFinalyProject.Entities.DTOs.EmployeeDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,44 +31,44 @@ namespace CourseFinalyProject.Business.Concrete
             _employee = employee;
             _mapper = mapper;
         }
-       // [SecuredOperation("admin")]
-        [ValidationAspect(typeof(EmployeValidation))]
-       // [CacheRemoveAspect("IEmployeeService.Get")]
-        public async Task<IResult> EmployeeAdded(EmployeeDto employee)
+      
+      //  [ValidationAspect(typeof(EmployeValidation))]
+        // [CacheRemoveAspect("IEmployeeService.GetAsync")]
+        [SecuredOperation("admin")]
+        public async Task<IResult> EmployeeAddedAsync(CreateEmployeeDto employee)
         {
             var emp = _mapper.Map<Employee>(employee);
-            await _employee.Add(emp);
+            await _employee.AddAsync(emp);
             return new SuccessResult(Messages.EmployeeAdded);
         }
-        [CacheRemoveAspect("IEmployeeService.Get")]
-        public async Task<IResult> EmployeeDelete(EmployeeDto employee)
+      //  [CacheRemoveAspect("IEmployeeService.GetAsync")]
+        public async Task<IResult> EmployeeDeleteAsync(ResultEmployeeDto employee)
         {
             var emp = _mapper.Map<Employee>(employee);
-            await _employee.Delete(emp);
+            await _employee.DeleteAsync(emp);
             return new SuccessResult(Messages.EmployeeDeleted);
         }
 
-         [CacheRemoveAspect("IEmployeeService.Get")]
-        public async Task<IResult> EmployeeUpdate(EmployeeDto employeeDto)
+      //   [CacheRemoveAspect("IEmployeeService.GetAsync")]
+        public async Task<IResult> EmployeeUpdateAsync(UpdateEmployeeDto employeeDto)
         {
             var emp = _mapper.Map<Employee>(employeeDto);
-            await _employee.Update(emp);
+            await _employee.UpdateAsync(emp);
             return new SuccessResult(Messages.EmployeeUpdate);
         }
 
-        [CacheAspect]
-        [PerformanceAspect(1)]
-        public async Task<IDataResult<List<EmployeeDto>>> GetAll()
+       // [CacheAspect]
+        //[PerformanceAspect(1)]
+        public async Task<IDataResult<List<ResultEmployeeDto>>> GetAllAsync()
         {
-            var result = _mapper.Map<List<EmployeeDto>>(await _employee.GetAll());
-            return new SuccessDateResult<List<EmployeeDto>>(result);
+            var result = _mapper.Map<List<ResultEmployeeDto>>(await _employee.GetAllAsync());
+            return new SuccessDateResult<List<ResultEmployeeDto>>(result);
         }
-
-        [CacheAspect]
-        [PerformanceAspect(1)]
-        public async Task<IDataResult<List<EmployeeDetailsDto>>> GetEmployeeDetails()
+        //[CacheAspect]
+        //[PerformanceAspect(1)]
+        public async Task<IDataResult<List<ResultEmployeeDetailsDto>>> GetEmployeeDetailsAsync()
         {
-            return new SuccessDateResult<List<EmployeeDetailsDto>>(_employee.GetEmployeesDetails());
+            return new SuccessDateResult<List<ResultEmployeeDetailsDto>>(_employee.GetEmployeesDetails());
         }
 
     }

@@ -1,6 +1,7 @@
 ﻿using Core.Utilities.Results.Data;
 using Core.Utilities.Results.NonData;
-using CourseFinalyProject.Entities.DTOs;
+using CourseFinalyProject.Entities.DTOs.EmployeeDtos;
+using CourseFinalyProject.Entities.DTOs.MilitaryRankDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,12 @@ namespace CourseFinalyProject.Business.Abstract
     public interface IMilitaryRankService
     {
 
-        Task<IResult> MilitaryRankAdded(MilitaryRankDto militaryRankDto);
-        Task<IResult> MilitaryRankUpdate(MilitaryRankDto militaryRankDto);
-        Task<IResult> MilitaryRankdeleted(MilitaryRankDto militaryRankDto);
-        Task<IDataResult<List<MilitaryRankDto>>> GetAll();
-        Task<IDataResult<List<MilitaryRankDto>>> GetEmployeeRanksInfo(int empID);      
+        Task<IResult> MilitaryRankAddedAsycn(ResultMilitaryRankDto militaryRankDto);
+        Task<IResult> MilitaryRankUpdateAsycn(ResultMilitaryRankDto militaryRankDto);
+        Task<IResult> MilitaryRankdeletedAsync(ResultMilitaryRankDto militaryRankDto);
+        Task<IDataResult<List<ResultMilitaryRankDto>>> GetAllAsync();
+        Task<IDataResult<List<ResultMilitaryRankDto>>> GetEmployeeRanksInfoAsync(int empID);      
 
-        Task<IDataResult<List<EmployeeRanksInfoDto>>> GetRankSEmployeeDetailsInfo(int empID);
+        Task<IDataResult<List<ResultEmployeeRanksInfoDto>>> GetRankSEmployeeDetailsInfoAsync(int empID);
     }
 }

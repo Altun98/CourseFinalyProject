@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
-//using Business.Abstract;
-//using Business.Constants;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using Core.Utilities.Results.Data;
@@ -13,40 +10,30 @@ using Core.Utilities.Security.Hashing;
 using Core.Utilities.Security.JWT;
 using CourseFinalyProject.Business.Abstract;
 using CourseFinalyProject.Business.Constants;
-using Entities.DTOs;
-
-
+using CourseFinalyProject.Entities.DTOs.UserDtos;
 
 namespace Business.Concrete
 {
 
-    public class AuthManager : IAuthService
+    public class AuthManager(IUserService _userService, ITokenHelper _tokenHelper) : IAuthService
     {
-        private IUserService _userService;
-        private ITokenHelper _tokenHelper;
-
-        public AuthManager(IUserService userService, ITokenHelper tokenHelper)
-        {
-            _userService = userService;
-            _tokenHelper = tokenHelper;
-        }
 
         public async Task<IDataResult<AccessToken>> CreateAccessToken(User user)
         {
-            var claims = await _userService.GetClaims(user);
-            var accessToken =  _tokenHelper.CreateToken(user, claims.Data);
+            var claims = await _userService.GetClaimsAsync(user);
+            var accessToken = _tokenHelper.CreateToken(user, claims.Data);
             return new SuccessDateResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
         }
 
         public async Task<IDataResult<User>> Login(UserForLoginDto userForLoginDto)
         {
-            var userToCheck = await _userService.GetByMail(userForLoginDto.Email);
+            var userToCheck = await _userService.GetByMailAsync(userForLoginDto.Email);
             if (userToCheck == null)
             {
                 return new ErrorDataResult<User>(Messages.UserNotFound);
             }
 
-            if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.Data.PasswordHash, userToCheck.Data.PasswordSalt))
+            if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.Data.PasswordHash,userToCheck.Data.PasswordSalt))
             {
                 return new ErrorDataResult<User>(Messages.PasswordError);
             }
@@ -54,7 +41,7 @@ namespace Business.Concrete
 
         }
 
-        public async Task<IDataResult<User>> Register(UserForRegisterDto userForRegisterDto, string password)
+        public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
         {
             byte[] passwordHash, passwordSalt;
             HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
@@ -67,14 +54,13 @@ namespace Business.Concrete
                 PasswordSalt = passwordSalt,
                 Status = true
             };
-            await _userService.Add(user);
-            return new SuccessDateResult<User>(user, Messages.UserRegistered);
+            _userService.AddAsync(user);
+            return new SuccessDateResult<User>(user, Messages.SuccessfulLogin);
         }
-
         public async Task<IResult> UserExists(string email)
         {
-            var result = await _userService.GetByMail(email);
-            if (result != null)
+            var result = await _userService.GetByMailAsync(email);
+            if (result == null)
             {
                 return new ErrorResult(Messages.UserAlreadyExists);
             }

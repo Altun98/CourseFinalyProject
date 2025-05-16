@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Core.Utilities.Results.NonData;
 using CourseFinalyProject.Business.Abstract;
-using CourseFinalyProject.Entities.DTOs;
+using CourseFinalyProject.Entities.DTOs.MilitaryRankDtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +21,7 @@ namespace CourseFinalyProject.WebApi.Controllers
         [HttpGet("getall")]
         public async Task<IActionResult> GetAll()
         {
-            var result = await _militaryRank.GetAll();
+            var result = await _militaryRank.GetAllAsync();
             if (result.Success)
                 return Ok(result);
             return BadRequest(result);
@@ -30,15 +30,15 @@ namespace CourseFinalyProject.WebApi.Controllers
         [HttpGet("employeranks")]
         public async Task<IActionResult> GetEmployeeRank(int empId)
         {
-            var result = await _militaryRank.GetEmployeeRanksInfo(empId);
+            var result = await _militaryRank.GetEmployeeRanksInfoAsync(empId);
             if (result.Success)
                 return Ok(result);
             return BadRequest(result);
         }
         [HttpPost("added")]
-        public async Task<IActionResult> RankAdded(MilitaryRankDto rankDto)
+        public async Task<IActionResult> RankAdded(ResultMilitaryRankDto rankDto)
         {
-            var result = await _militaryRank.MilitaryRankAdded(rankDto);
+            var result = await _militaryRank.MilitaryRankAddedAsycn(rankDto);
             if (result.Success)
                 return Ok(result);
             return BadRequest(result);
@@ -46,7 +46,7 @@ namespace CourseFinalyProject.WebApi.Controllers
         [HttpGet("employeerankdetails")]
         public async Task<IActionResult> employeerankdetails(int empId)
         {
-            var rankResult = await _militaryRank.GetRankSEmployeeDetailsInfo(empId);
+            var rankResult = await _militaryRank.GetRankSEmployeeDetailsInfoAsync(empId);
             if (rankResult.Success)
                 return Ok(rankResult);
             return BadRequest(rankResult);

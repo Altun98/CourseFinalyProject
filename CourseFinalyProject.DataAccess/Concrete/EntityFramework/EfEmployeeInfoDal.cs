@@ -4,7 +4,6 @@ using CourseFinalyProject.DataAccess.Abstract;
 using CourseFinalyProject.DataAccess.Concrete.EntityFramework.Context;
 using CourseFinalyProject.Entities.Concrete;
 using CourseFinalyProject.Entities.DTOs.Employee;
-using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

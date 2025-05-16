@@ -1,9 +1,9 @@
-﻿ using Core.DataAccess.EntityFramework;
+﻿using Core.DataAccess.EntityFramework;
 using Core.Utilities.Results.Data;
 using CourseFinalyProject.DataAccess.Abstract;
 using CourseFinalyProject.DataAccess.Concrete.EntityFramework.Context;
 using CourseFinalyProject.Entities.Concrete;
-using CourseFinalyProject.Entities.DTOs.Education;
+using CourseFinalyProject.Entities.DTOs.EmployeeDtos;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace CourseFinalyProject.DataAccess.Concrete.EntityFramework
 {
     public class EfEducationDal : EfEntityRepositoryBase<Education, CourseFinalyProjectContext>, IEducationDal
     {
-        public async Task<List<EmployeeEducationDetailsDto>> GetEmployeeEducationInfo(int empID)
+        public async Task<List<ResultEmployeeEducationDetailsDto>> GetEmployeeEducationInfo(int empID)
         {
             using (CourseFinalyProjectContext contex = new CourseFinalyProjectContext())
             {
@@ -23,7 +23,7 @@ namespace CourseFinalyProject.DataAccess.Concrete.EntityFramework
                               join emp in contex.Employees on edu.EmployeeID equals emp.Id
                               join eduT in contex.EducationTypes on edu.EducationTypeID equals eduT.Id
                               where edu.EmployeeID == empID
-                              select new EmployeeEducationDetailsDto
+                              select new ResultEmployeeEducationDetailsDto
                               {
                                   Id = edu.Id,
                                   EmployeeID = emp.Id,
