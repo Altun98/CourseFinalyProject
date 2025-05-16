@@ -52,14 +52,18 @@ namespace CourseFinalyProject.Business.Concrete
             return new SuccessDateResult<ResultAcademicDegreeDto>(valMap);
         }
 
-        public Task<IDataResult<List<ResultAcademicDegreeDto>>> GetDiplomaDataTimeSearchAsync(DateTime startDate, DateTime endDate)
+        public async Task<IDataResult<List<ResultAcademicDegreeDto>>> GetDiplomaDataTimeSearchAsync(DateTime startDate, DateTime endDate)
         {
-            throw new NotImplementedException();
+            //iki tarix arasinda diplom verilen sexsler
+            var values =await _academicDegree.GetAllAsync(x => x.DiplomaDate >= startDate && x.DiplomaDate <= endDate);
+            var valMap = _mapper.Map<List<ResultAcademicDegreeDto>>(values);
+            return new SuccessDateResult<List<ResultAcademicDegreeDto>>(valMap);
         }
 
-        public Task<IResult> UpdateAsync(UpdateAcademicDegreeDto updateAcademicDegreeDto)
+        public async Task<IResult> UpdateAsync(UpdateAcademicDegreeDto updateAcademicDegreeDto)
         {
-            throw new NotImplementedException();
+            await _academicDegree.UpdateAsync(_mapper.Map<AcademicDegree>(updateAcademicDegreeDto));
+            return new SuccessResult(Messages.AcademicDegreeUpdate);
         }
     }
 }
