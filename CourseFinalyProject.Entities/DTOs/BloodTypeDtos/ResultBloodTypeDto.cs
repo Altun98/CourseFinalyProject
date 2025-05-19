@@ -9,6 +9,7 @@ namespace CourseFinalyProject.Entities.DTOs.BloodTypeDtos
 {
     public class ResultBloodTypeDto:IDto
     {
+        public int Id { get; set; }
         public string BloodTypeName { get; set; }
     }
 }

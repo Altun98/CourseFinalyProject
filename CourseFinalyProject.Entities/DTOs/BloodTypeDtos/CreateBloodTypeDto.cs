@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CourseFinalyProject.Entities.DTOs.BloodTypeDtos
 {
-    public class CreateBloodType : IDto
+    public class CreateBloodTypeDto : IDto
     {
         public string BloodTypeName { get; set; }
     }
