@@ -2,6 +2,7 @@
 using CourseFinalyProject.Entities.Concrete;
 using CourseFinalyProject.Entities.DTOs.Employee;
 using CourseFinalyProject.Entities.DTOs.EmployeeDtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace CourseFinalyProject.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class EmployeesController : ControllerBase
     {
         IEmployeeService _employee;
