@@ -40,6 +40,10 @@ namespace CourseFinalyProject.Business.Constants
         public static string ConscriptionDeleted = "iscinin esgerlik melumatlari silindi";
         public static string AcademicDegreeAdded = "Academik derece Sexse elave edildi";
         public static string AcademicDegreeDelete = "Secilmis academic derece silindi";
-        public static string AcademicDegreeUpdate="Secilmis academic derece uzerinde duzelis edildi";
+        public static string AcademicDegreeUpdate = "Secilmis academic derece uzerinde duzelis edildi";
+        public static string Added = "Elave edildi";
+        public static string Deleted = "Secilmis melumat silinid";
+        public static string NotFound = "Melumat tapilmadi";
+        public static string Updated = "Melumat deyisdirildi";
     }
 }

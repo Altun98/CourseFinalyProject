@@ -1,0 +1,14 @@
+﻿using Core.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CourseFinalyProject.Entities.DTOs.GiveDtos
+{
+    public class CreateGiveDto : IDto
+    {
+        public string GiveName { get; set; }
+    }
+}
