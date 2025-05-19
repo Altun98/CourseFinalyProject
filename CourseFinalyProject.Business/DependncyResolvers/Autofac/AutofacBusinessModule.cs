@@ -48,6 +48,7 @@ namespace CourseFinalyProject.Business.DependncyResolvers.Autofac
             builder.RegisterType<LaborActivityManager>().As<ILaborActivityService>().SingleInstance();
             builder.RegisterType<MilitaryServiceManager>().As<IMilitaryServiceService>().SingleInstance();
             builder.RegisterType<MilitaryRankManager>().As<IMilitaryRankService>().SingleInstance();
+            builder.RegisterType<BranchManager>().As<IBranchService>().SingleInstance();
             #endregion
             #region EfDaltoIDal
             builder.RegisterType<EfAcademicDegreeDal>().As<IAcademicDegreeDal>().SingleInstance();
@@ -69,6 +70,7 @@ namespace CourseFinalyProject.Business.DependncyResolvers.Autofac
             builder.RegisterType<EfLaborActivityDal>().As<ILaborActivityDal>().SingleInstance();
             builder.RegisterType<EfMilitaryServiceDal>().As<IMilitaryServiceDal>().SingleInstance();
             builder.RegisterType<EfMilitaryRankDal>().As<IMilitaryRankDal>().SingleInstance();
+            builder.RegisterType<EfBranchDal>().As<IBranchDal>().SingleInstance();
 
 
             #endregion

@@ -45,5 +45,8 @@ namespace CourseFinalyProject.Business.Constants
         public static string Deleted = "Secilmis melumat silinid";
         public static string NotFound = "Melumat tapilmadi";
         public static string Updated = "Melumat deyisdirildi";
+        public static string NoAdded="Melumat elave edile bilmedi";
+        public static string NoUpdate = "Melumat deyisdirile bilmedi";
+        public static string NoDelete = "Melumat siline bilmedi";
     }
 }

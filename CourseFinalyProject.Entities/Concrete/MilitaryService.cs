@@ -13,7 +13,7 @@ namespace CourseFinalyProject.Entities.Concrete
         [ForeignKey(nameof(Employee))] public int EmployeeID { get; set; }
         public DateTime? DocDade { get; set; }
         public string? DocNumber { get; set; }
-        public string Branch { get; set; }
+        [ForeignKey(nameof(Branch))] public string BranchId { get; set; }
         public string? Departament { get; set; }
         public string? Position { get; set; }
         public bool IsMain { get; set; } = true;
