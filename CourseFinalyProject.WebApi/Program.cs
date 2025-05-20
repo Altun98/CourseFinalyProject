@@ -211,6 +211,34 @@ namespace CourseFinalyProject.WebApi
                     };
                 });
 
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "JWT Token daxil edin: Bearer {token}"
+                });
+
+                // Security requirement - Swagger sorğularına token əlavə olunmasını tələb edir
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    new string[] {}
+                }
+    });
+            });
 
             builder.Services.AddDependencyResolvers(new ICoreModule[] { new CoreModule() });
             builder.Services.AddAuthorization();

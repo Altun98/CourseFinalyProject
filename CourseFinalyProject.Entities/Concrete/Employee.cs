@@ -27,5 +27,7 @@ namespace CourseFinalyProject.Entities.Concrete
         public ICollection<FrutherEducation> FrutherEducations { get; set; } = new List<FrutherEducation>();
         public ICollection<LaborActivity> laborActivities { get; set; } = new List<LaborActivity>();
         public ICollection<MilitaryRank> MilitaryRanks { get; set; } = new List<MilitaryRank>();
+        public ICollection<EmployeeFamilyMember> EmployeeFamilyMembers { get; set; } = new List<EmployeeFamilyMember>();
+        public ICollection<MHHK> MHHKs { get; set; } = new List<MHHK>();
     }
 }

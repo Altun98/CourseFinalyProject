@@ -38,5 +38,8 @@ namespace CourseFinalyProject.DataAccess.Concrete.EntityFramework.Context
         public DbSet<RankType> RankTypes { get; set; }
         public DbSet<RankStatus> RankStatuses { get; set; }
         public DbSet<MilitaryRank> MilitaryRanks { get; set; }
+        public DbSet<Branch> Branches { get; set; }
+        public DbSet<RelativeType> RelativeTypes { get; set; }
+        public DbSet<EmployeeFamilyMember> EmployeeFamilyMembers { get; set; }
     }
 }
