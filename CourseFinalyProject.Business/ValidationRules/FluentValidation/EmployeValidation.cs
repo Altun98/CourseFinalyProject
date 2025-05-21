@@ -13,7 +13,8 @@ namespace CourseFinalyProject.Business.ValidationRules.FluentValidation
     {
         public EmployeValidation()
         {
-            RuleFor(p => p.FirstName).NotNull().WithMessage("Ad bos ola bilmez");
+            RuleFor(p => p.FirstName).NotNull().WithMessage("Ad null ola bilməz").NotEmpty().WithMessage("Ad boş ola bilməz")
+    .Must(name => !string.IsNullOrWhiteSpace(name)).WithMessage("Ad yalnız boşluqlardan ibarət ola bilməz");
         }
     }
 }

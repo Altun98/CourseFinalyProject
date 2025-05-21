@@ -29,5 +29,7 @@ namespace CourseFinalyProject.Entities.Concrete
         public ICollection<MilitaryRank> MilitaryRanks { get; set; } = new List<MilitaryRank>();
         public ICollection<EmployeeFamilyMember> EmployeeFamilyMembers { get; set; } = new List<EmployeeFamilyMember>();
         public ICollection<MHHK> MHHKs { get; set; } = new List<MHHK>();
+        public ICollection<Awards> Awardses { get; set; } = new List<Awards>();
+        public ICollection<ForignLanguage> ForignLanguages { get; set; } = new List<ForignLanguage>();
     }
 }

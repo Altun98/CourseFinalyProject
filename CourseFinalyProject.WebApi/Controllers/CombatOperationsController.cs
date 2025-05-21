@@ -26,7 +26,7 @@ namespace CourseFinalyProject.WebApi.Controllers
             return BadRequest(result);
         }
         [HttpPost("added")]
-        public async Task<IActionResult> Added(ResultCombatOperationsDto combatOperationsDto)
+        public async Task<IActionResult> Added(CreateCombatOperationsDto combatOperationsDto)
         {
             var result = await _combatOperationsService.AddedAsync(combatOperationsDto);
             if (result.Success)
@@ -46,7 +46,7 @@ namespace CourseFinalyProject.WebApi.Controllers
             return BadRequest(result);
         }
         [HttpPut("updated")]
-        public async Task<IActionResult> Update(ResultCombatOperationsDto combat)
+        public async Task<IActionResult> Update(UpdateCombatOperationsDto combat)
         {
             var result = await _combatOperationsService.UpdateAsync(combat);
             if (result.Success)

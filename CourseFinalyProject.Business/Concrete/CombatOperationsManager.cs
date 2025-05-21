@@ -25,7 +25,7 @@ namespace CourseFinalyProject.Business.Concrete
             _mapper = mapper;
         }
 
-        public async Task<IResult> AddedAsync(ResultCombatOperationsDto combatOperationsDto)
+        public async Task<IResult> AddedAsync(CreateCombatOperationsDto combatOperationsDto)
         {
             var comOp = _mapper.Map<CombatOperations>(combatOperationsDto);
             await _combatOperations.AddAsync(comOp);
@@ -53,9 +53,13 @@ namespace CourseFinalyProject.Business.Concrete
             return new SuccessDateResult<List<ResultCombatOperationsDto>>(result);
         }
 
-        public Task<IResult> UpdateAsync(ResultCombatOperationsDto combatOperationsDto)
+        public async Task<IResult> UpdateAsync(UpdateCombatOperationsDto combatOperationsDto)
         {
-            throw new NotImplementedException();
+            var value = _mapper.Map<CombatOperations>(combatOperationsDto);
+            await _combatOperations.UpdateAsync(value);
+            if (value != null)
+                return new SuccessResult(Messages.Updated);
+            return new ErrorResult(Messages.NoUpdate);
         }
     }
 }
