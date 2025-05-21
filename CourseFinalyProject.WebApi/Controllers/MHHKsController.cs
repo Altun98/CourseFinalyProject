@@ -9,7 +9,7 @@ namespace CourseFinalyProject.WebApi.Controllers
     [ApiController]
     public class MHHKsController(IMHHKService _mHHKService, IMapper _mapper) : ControllerBase
     {
-        [HttpGet("GetAll")]
+        [HttpGet("GetAll")]     
         public async Task<IActionResult> GetAll()
         {
             var values = await _mHHKService.GetAllAsync();

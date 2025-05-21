@@ -15,6 +15,7 @@ namespace CourseFinalyProject.Business.Abstract
         Task<IResult> AddAsync(CreateMHHKDto createMHHKDto);
         Task<IResult> UpdateAsync(UpdateMHHKDto updateMHHKDto);
         Task<IResult> DeleteAsync(ResultMHHKDto resultMHHKDto);
+
         Task<IDataResult<List<ResultMHHKDto>>> GetAllAsync();
         Task<IDataResult<List<ResultMHHKDto>>> GetFindEmployee(int _empId);
         Task<IDataResult<ResultMHHKDto>> GetById(int _id);

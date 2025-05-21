@@ -250,8 +250,15 @@ namespace CourseFinalyProject.WebApi
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                //Eger swaggerde conrollerin http metodlarinin tam gorsenmesini isteyirsense bu formada 
+                //app.UseSwaggerUI();
+                //yox eger yiqilmis formada isteyirsense bu formada yaz
+                app.UseSwaggerUI(c =>
+                {
+                    c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
+                });
             }
+           
             app.UseRouting();
             app.UseStaticFiles();
             app.UseHttpsRedirection();
