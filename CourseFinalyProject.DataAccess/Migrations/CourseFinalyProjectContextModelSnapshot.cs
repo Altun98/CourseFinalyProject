@@ -171,6 +171,58 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.ToTable("Attestations");
                 });
 
+            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.Awards", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AwardasDocNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("AwardsDocDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("AwardsTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Cause")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DontSubmitDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DontSubmitNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("HonoraryTitleId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsBasis")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Mains")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("MedalTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("Awards");
+                });
+
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.BloodType", b =>
                 {
                     b.Property<int>("Id")
@@ -186,6 +238,26 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BloodTypes");
+                });
+
+            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.Branch", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("BranchName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Branches");
                 });
 
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.CombatOperations", b =>
@@ -494,6 +566,54 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.ToTable("EmployeeDocuments");
                 });
 
+            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.EmployeeFamilyMember", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EmployeeID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FIN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstNameOld")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Patronymic")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RelativeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeID");
+
+                    b.ToTable("EmployeeFamilyMembers");
+                });
+
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.EmployeeInfo", b =>
                 {
                     b.Property<int>("Id")
@@ -579,6 +699,47 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ExtenstionOFServiceLives");
+                });
+
+            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.ForignLanguage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Dageer")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DocDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DocNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsIndefinitely")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Percentage")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("ForignLanguage");
                 });
 
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.FrutherEducation", b =>
@@ -672,6 +833,43 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.ToTable("LaborActivity");
                 });
 
+            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.MHHK", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Company")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Diagnosis")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Feedback")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("MHHKDocDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("MHHKDocNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("MHHK");
+                });
+
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.MilitaryRank", b =>
                 {
                     b.Property<int>("Id")
@@ -716,6 +914,9 @@ namespace CourseFinalyProject.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("BranchId1")
+                        .HasColumnType("int");
+
                     b.Property<string>("Departament")
                         .HasColumnType("nvarchar(max)");
 
@@ -744,6 +945,8 @@ namespace CourseFinalyProject.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BranchId1");
 
                     b.ToTable("MilitaryServices");
                 });
@@ -786,6 +989,23 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("RankTypes");
+                });
+
+            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.RelativeType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("RelativeTypeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RelativeTypes");
                 });
 
             modelBuilder.Entity("EmployeeExtenstionOFServiceLife", b =>
@@ -893,6 +1113,15 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.Navigation("Give");
                 });
 
+            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.Awards", b =>
+                {
+                    b.HasOne("CourseFinalyProject.Entities.Concrete.Employee", null)
+                        .WithMany("Awardses")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.CombatOperations", b =>
                 {
                     b.HasOne("CourseFinalyProject.Entities.Concrete.Employee", "Employee")
@@ -969,6 +1198,15 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.Navigation("Employee");
                 });
 
+            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.EmployeeFamilyMember", b =>
+                {
+                    b.HasOne("CourseFinalyProject.Entities.Concrete.Employee", null)
+                        .WithMany("EmployeeFamilyMembers")
+                        .HasForeignKey("EmployeeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.EmployeeInfo", b =>
                 {
                     b.HasOne("CourseFinalyProject.Entities.Concrete.BloodType", "BloodType")
@@ -986,6 +1224,15 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.Navigation("BloodType");
 
                     b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.ForignLanguage", b =>
+                {
+                    b.HasOne("CourseFinalyProject.Entities.Concrete.Employee", null)
+                        .WithMany("ForignLanguages")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.FrutherEducation", b =>
@@ -1006,6 +1253,22 @@ namespace CourseFinalyProject.DataAccess.Migrations
                         .HasForeignKey("EmployeeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.MHHK", b =>
+                {
+                    b.HasOne("CourseFinalyProject.Entities.Concrete.Employee", null)
+                        .WithMany("MHHKs")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.MilitaryService", b =>
+                {
+                    b.HasOne("CourseFinalyProject.Entities.Concrete.Branch", null)
+                        .WithMany("MilitaryServices")
+                        .HasForeignKey("BranchId1");
                 });
 
             modelBuilder.Entity("EmployeeExtenstionOFServiceLife", b =>
@@ -1088,11 +1351,18 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.Navigation("EmployeeInfos");
                 });
 
+            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.Branch", b =>
+                {
+                    b.Navigation("MilitaryServices");
+                });
+
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.Employee", b =>
                 {
                     b.Navigation("AcademicDegrees");
 
                     b.Navigation("Attestations");
+
+                    b.Navigation("Awardses");
 
                     b.Navigation("CombatOperations");
 
@@ -1103,7 +1373,13 @@ namespace CourseFinalyProject.DataAccess.Migrations
 
                     b.Navigation("Educations");
 
+                    b.Navigation("EmployeeFamilyMembers");
+
+                    b.Navigation("ForignLanguages");
+
                     b.Navigation("FrutherEducations");
+
+                    b.Navigation("MHHKs");
 
                     b.Navigation("laborActivities");
                 });

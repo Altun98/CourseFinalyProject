@@ -13,7 +13,7 @@ namespace CourseFinalyProject.DataAccess.Concrete.EntityFramework.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-8CPE6JQ\\MYDB;Database=CBEDFinalProjectApi;User Id=sa;Password=2016;TrustServerCertificate=true");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-1UHH25N\\MYDB;Database=CBEDFinalProjectApi;User Id=sa;Password=2016;TrustServerCertificate=true");
         }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<EmployeeDocument> EmployeeDocuments { get; set; }
