@@ -41,5 +41,13 @@ namespace CourseFinalyProject.DataAccess.Concrete.EntityFramework.Context
         public DbSet<Branch> Branches { get; set; }
         public DbSet<RelativeType> RelativeTypes { get; set; }
         public DbSet<EmployeeFamilyMember> EmployeeFamilyMembers { get; set; }
+        public DbSet<MedalType> MedalTypes { get; set; }
+        public DbSet<ForignLanguage> ForignLanguages { get; set; }
+        public DbSet<Language> Languages { get; set; }
+        public DbSet<MHHK> MHHKs { get; set; }
+        public DbSet<MHHKType> MHHKTypes { get; set; }
+        public DbSet<AwardsType> AwardsTypes { get; set; }
+        public DbSet<Awards> Awards { get; set; }
+
     }
 }

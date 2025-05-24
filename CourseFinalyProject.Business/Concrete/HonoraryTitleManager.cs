@@ -29,19 +29,34 @@ namespace CourseFinalyProject.Business.Concrete
             return new ErrorResult(Messages.NoAdded);
         }
 
-        public Task<IResult> DeleteAsync(ResultHonoraryTitleDto resultHonoraryTitleDto)
+        public async Task<IResult> DeleteAsync(ResultHonoraryTitleDto resultHonoraryTitleDto)
         {
-            throw new NotImplementedException();
+            var value = _mapper.Map<HonoraryTitle>(resultHonoraryTitleDto);
+            await _honoraryTitleDal.DeleteAsync(value);
+            if (value != null)
+                return new SuccessResult(Messages.Deleted);
+            return new ErrorResult(Messages.NoDelete);
         }
 
-        public Task<IDataResult<List<ResultHonoraryTitleDto>>> GetAllAsync()
+        public async Task<IDataResult<List<ResultHonoraryTitleDto>>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var value = await _honoraryTitleDal.GetAllAsync();
+            var valMap = _mapper.Map<List<ResultHonoraryTitleDto>>(value);
+            if (valMap != null)
+                return new SuccessDateResult<List<ResultHonoraryTitleDto>>(valMap);
+            return new ErrorDataResult<List<ResultHonoraryTitleDto>>(valMap,Messages.NotFound);
         }
 
-        public Task<IResult> UpdateAsync(UpdateHonoraryTitleDto updateHonoraryTitleDto)
+        public async Task<IResult> UpdateAsync(UpdateHonoraryTitleDto updateHonoraryTitleDto)
         {
-            throw new NotImplementedException();
+            var contr = _mapper.Map<HonoraryTitle>(updateHonoraryTitleDto);
+            if(await HonoraryTitleDubilcartNameControl(contr))
+            {
+                await _honoraryTitleDal.UpdateAsync(contr);
+                if (contr != null)
+                    return new SuccessResult(Messages.Updated);
+            }
+            return new ErrorResult(Messages.NoUpdate);
         }
         private async Task<bool> HonoraryTitleDubilcartNameControl(HonoraryTitle honoraryTitle)
         {
