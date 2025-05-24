@@ -18,7 +18,8 @@ namespace CourseFinalyProject.Business.Concrete
     {
         public async Task<IResult> AddAsync(CreateMedalTypeDto createMedalTypeDto)
         {
-            if (await MedalTypeControl(createMedalTypeDto))
+            var control = _mapper.Map<MedalType>(createMedalTypeDto);
+            if (await MedalTypeControl(control))
             {
                 var value = _mapper.Map<MedalType>(createMedalTypeDto);
                 await _medalTypeDal.AddAsync(value);
@@ -28,27 +29,41 @@ namespace CourseFinalyProject.Business.Concrete
             return new ErrorResult(Messages.NoAdded);
         }
 
-        public Task<IResult> DeleteAsync(ResultMedalTypeDto resultMedalTypeDto)
+        public async Task<IResult> DeleteAsync(ResultMedalTypeDto resultMedalTypeDto)
         {
-            throw new NotImplementedException();
+            var value = _mapper.Map<MedalType>(resultMedalTypeDto);
+            await _medalTypeDal.DeleteAsync(value);
+            if (value != null)
+                return new SuccessResult(Messages.Deleted);
+            return new ErrorResult(Messages.NoDelete);
         }
 
-        public Task<IDataResult<List<ResultMedalTypeDto>>> GetAllAsync()
+        public async Task<IDataResult<List<ResultMedalTypeDto>>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var values = await _medalTypeDal.GetAllAsync();
+            var valMaps = _mapper.Map<List<ResultMedalTypeDto>>(values);
+            if (values != null)
+                return new SuccessDateResult<List<ResultMedalTypeDto>>(valMaps);
+            return new ErrorDataResult<List<ResultMedalTypeDto>> (valMaps, Messages.NotFound);
         }
 
-        public Task<IResult> UpdateAsync(UpdateMedalTypeDto updateMedalTypeDto)
+        public async Task<IResult> UpdateAsync(UpdateMedalTypeDto updateMedalTypeDto)
         {
-            throw new NotImplementedException();
+            var conVal = _mapper.Map<MedalType>(updateMedalTypeDto);
+            if(await MedalTypeControl(conVal))
+            {
+                await _medalTypeDal.UpdateAsync(conVal);
+                if (conVal != null)
+                    return new SuccessResult(Messages.Updated);
+            }
+            return new ErrorResult(Messages.NoUpdate);
         }
-        private async Task<bool> MedalTypeControl(CreateMedalTypeDto createMedalTypeDto)
+        private async Task<bool> MedalTypeControl(MedalType medalType)
         {
-            var value = await _medalTypeDal.GetAsync(x => x.MedalName.Contains(createMedalTypeDto.MedalName));
+            var value = await _medalTypeDal.GetAsync(x => x.MedalName.Contains(medalType.MedalName));
             if (value != null)
                 return false;
-            return true;
-          
+            return true;          
         }
     }
 }
