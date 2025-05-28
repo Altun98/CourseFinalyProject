@@ -47,6 +47,8 @@ namespace CourseFinalyProject.DataAccess.Concrete.EntityFramework.Context
         public DbSet<MHHK> MHHKs { get; set; }
         public DbSet<MHHKType> MHHKTypes { get; set; }
         public DbSet<AwardsType> AwardsTypes { get; set; }
+        //yeni 
+
         public DbSet<Awards> Awards { get; set; }
 
     }
