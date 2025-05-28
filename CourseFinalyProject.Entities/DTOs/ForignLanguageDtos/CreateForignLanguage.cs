@@ -17,5 +17,6 @@ namespace CourseFinalyProject.Entities.DTOs.ForignLanguageDtos
         public int Percentage { get; set; }//faiz
         public DateTime? EndDate { get; set; }
         public bool IsIndefinitely { get; set; } = false;
+        public int GiveId { get; set; }
     }
 }

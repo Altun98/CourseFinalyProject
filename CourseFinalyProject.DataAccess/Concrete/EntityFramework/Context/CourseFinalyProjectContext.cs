@@ -13,7 +13,8 @@ namespace CourseFinalyProject.DataAccess.Concrete.EntityFramework.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-1UHH25N\\MYDB;Database=CBEDFinalProjectApi;User Id=sa;Password=2016;TrustServerCertificate=true");
+            //  optionsBuilder.UseSqlServer("Server=DESKTOP-1UHH25N\\MYDB;Database=CBEDFinalProjectApi;User Id=sa;Password=2016;TrustServerCertificate=true");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-BR15D31\\MYDB;Database=CBEDFinalProjectApi;User Id=sa;Password=2016;TrustServerCertificate=true");
         }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<EmployeeDocument> EmployeeDocuments { get; set; }
@@ -47,9 +48,8 @@ namespace CourseFinalyProject.DataAccess.Concrete.EntityFramework.Context
         public DbSet<MHHK> MHHKs { get; set; }
         public DbSet<MHHKType> MHHKTypes { get; set; }
         public DbSet<AwardsType> AwardsTypes { get; set; }
-        //yeni 
-
         public DbSet<Awards> Awards { get; set; }
+        public DbSet<HonoraryTitle> HonoraryTitles { get; set; }
 
     }
 }

@@ -20,6 +20,8 @@ namespace CourseFinalyProject.Entities.Concrete
         public string Mains { get; set; }
         public DateTime DontSubmitDate { get; set; }
         public string DontSubmitNumber { get; set; }
-        public bool IsBasis { get; set; } = false;
+        [ForeignKey(nameof(Give))] public int? GiveID { get; set; }
+        public bool IsBasis { get; set; } = false;//birinci gorsenib gorsenmesi  teyin edilecek
+
     }
 }
