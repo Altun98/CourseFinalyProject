@@ -25,9 +25,9 @@ namespace CourseFinalyProject.Business.DependncyResolvers.Autofac
         {
             builder.RegisterType<UserManager>().As<IUserService>();
             builder.RegisterType<EfUserDal>().As<IUserDal>();
-
             builder.RegisterType<AuthManager>().As<IAuthService>();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
+
             #region ManagertoService
             builder.RegisterType<AcademicDegreeManager>().As<IAcademicDegreeService>().SingleInstance();
             builder.RegisterType<AttestationManager>().As<IAttestationService>().SingleInstance();
@@ -51,6 +51,17 @@ namespace CourseFinalyProject.Business.DependncyResolvers.Autofac
             builder.RegisterType<BranchManager>().As<IBranchService>().SingleInstance();
             builder.RegisterType<RelativeTypeManager>().As<IRelativeTypeService>().SingleInstance();
             builder.RegisterType<EmployeeFamilyMemberManager>().As<IEmployeeFamilyMemberService>().SingleInstance();
+            builder.RegisterType<HonoraryTitleManager>().As<IHonoraryTitleService>().SingleInstance();
+            builder.RegisterType<MedalTypeManager>().As<IMedalTypeService>().SingleInstance();
+            builder.RegisterType<MHHKTypeManager>().As<IMHHKTypeService>().SingleInstance();
+            builder.RegisterType<MHHKManager>().As<IMHHKService>().SingleInstance();
+            builder.RegisterType<AwardsTypeManager>().As<IAwardsTypeService>().SingleInstance();
+            builder.RegisterType<AwardsManager>().As<IAwardsService>().SingleInstance();
+            builder.RegisterType<LanguageManager>().As<ILanguageService>().SingleInstance();
+            builder.RegisterType<ForignLanguageManager>().As<IForignLanguageService>().SingleInstance();
+
+
+
             #endregion
             #region EfDaltoIDal
             builder.RegisterType<EfAcademicDegreeDal>().As<IAcademicDegreeDal>().SingleInstance();
@@ -75,6 +86,14 @@ namespace CourseFinalyProject.Business.DependncyResolvers.Autofac
             builder.RegisterType<EfBranchDal>().As<IBranchDal>().SingleInstance();
             builder.RegisterType<EfRelativeTypeDal>().As<IRelativeTypeDal>().SingleInstance();
             builder.RegisterType<EfEmployeeFamilyMemberDal>().As<IEmployeeFamilyMemberDal>().SingleInstance();
+            builder.RegisterType<EfHonoraryTitleDal>().As<IHonoraryTitleDal>().SingleInstance();
+            builder.RegisterType<EfMedalTypeDal>().As<IMedalTypeDal>().SingleInstance();
+            builder.RegisterType<EfMHHKTypeDal>().As<IMHHKTypeDal>().SingleInstance();
+            builder.RegisterType<EfMHHKDal>().As<IMHHKDal>().SingleInstance();
+            builder.RegisterType<EfAwardsTypeDal>().As<IAwardsTypeDal>().SingleInstance();
+            builder.RegisterType<EfAwardsDal>().As<IAwardsDal>().SingleInstance();
+            builder.RegisterType<EfLanguageDal>().As<ILanguageDal>().SingleInstance();
+            builder.RegisterType<EfForignLanguageDal>().As<IForignLanguageDal>().SingleInstance();
 
             #endregion
 

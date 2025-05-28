@@ -203,6 +203,9 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("GiveID")
+                        .HasColumnType("int");
+
                     b.Property<int?>("HonoraryTitleId")
                         .HasColumnType("int");
 
@@ -221,6 +224,27 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.HasIndex("EmployeeId");
 
                     b.ToTable("Awards");
+                });
+
+            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.AwardsType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AwardsTypeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AwardsTypes");
                 });
 
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.BloodType", b =>
@@ -726,6 +750,9 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("GiveId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsIndefinitely")
                         .HasColumnType("bit");
 
@@ -739,7 +766,7 @@ namespace CourseFinalyProject.DataAccess.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("ForignLanguage");
+                    b.ToTable("ForignLanguages");
                 });
 
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.FrutherEducation", b =>
@@ -799,6 +826,26 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.ToTable("Gives");
                 });
 
+            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.HonoraryTitle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("HonoraryTitleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("HonoraryTitles");
+                });
+
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.LaborActivity", b =>
                 {
                     b.Property<int>("Id")
@@ -831,6 +878,27 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     b.HasIndex("EmployeeID");
 
                     b.ToTable("LaborActivity");
+                });
+
+            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.Language", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LanguageName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Languages");
                 });
 
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.MHHK", b =>
@@ -867,7 +935,48 @@ namespace CourseFinalyProject.DataAccess.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("MHHK");
+                    b.ToTable("MHHKs");
+                });
+
+            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.MHHKType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("MHHKTypeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MHHKTypes");
+                });
+
+            modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.MedalType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsAll")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MedalName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MedalTypes");
                 });
 
             modelBuilder.Entity("CourseFinalyProject.Entities.Concrete.MilitaryRank", b =>

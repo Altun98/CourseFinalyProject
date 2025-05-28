@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CourseFinalyProject.DataAccess.Concrete.EntityFramework
 {
-    public class MHHKDal:EfEntityRepositoryBase<MHHK,CourseFinalyProjectContext>,IMHHKDal
+    public class EfMHHKDal:EfEntityRepositoryBase<MHHK,CourseFinalyProjectContext>,IMHHKDal
     {
 
     }

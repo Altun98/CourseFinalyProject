@@ -16,6 +16,10 @@ namespace CourseFinalyProject.DataAccess.Abstract
         Task<List<DetailForignLanguage>> GetFindEmployeeIdAsync(int empId);
         Task<List<DetailForignLanguage>> GetFindLanguageIdAsync(int language);
         Task<List<DetailForignLanguage>> GetFindGiveIdAsync(int giveId);
-        Task<List<DetailForignLanguage>> GetFindPercentageAsync(int percentage);
+        Task<List<DetailForignLanguage>> GetFindPercentageAsync(int percentage);     
+        Task<List<DetailForignLanguage>> GetIsIndefinitely();
+        Task<List<DetailForignLanguage>> GetNotIsIndefinitely();
+        Task<List<DetailForignLanguage>> GetIsIndefinitelyControlEndDateTime(DateTime start, DateTime _end);
+        Task<List<DetailForignLanguage>> GetFindLanguageControlEndDateTime(int language, DateTime _start, DateTime _end);
     }
 }
