@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CourseFinalyProject.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class sa1 : Migration
+    public partial class sa2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -315,12 +315,11 @@ namespace CourseFinalyProject.DataAccess.Migrations
                     EmployeeID = table.Column<int>(type: "int", nullable: false),
                     DocDade = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DocNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BranchId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BranchId = table.Column<int>(type: "int", nullable: false),
                     Departament = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Position = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsMain = table.Column<bool>(type: "bit", nullable: false),
                     GiveID = table.Column<int>(type: "int", nullable: false),
-                    BranchId1 = table.Column<int>(type: "int", nullable: true),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -328,10 +327,11 @@ namespace CourseFinalyProject.DataAccess.Migrations
                 {
                     table.PrimaryKey("PK_MilitaryServices", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MilitaryServices_Branches_BranchId1",
-                        column: x => x.BranchId1,
+                        name: "FK_MilitaryServices_Branches_BranchId",
+                        column: x => x.BranchId,
                         principalTable: "Branches",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -980,9 +980,9 @@ namespace CourseFinalyProject.DataAccess.Migrations
                 column: "RankTypesId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MilitaryServices_BranchId1",
+                name: "IX_MilitaryServices_BranchId",
                 table: "MilitaryServices",
-                column: "BranchId1");
+                column: "BranchId");
         }
 
         /// <inheritdoc />

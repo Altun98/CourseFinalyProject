@@ -1019,11 +1019,7 @@ namespace CourseFinalyProject.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("BranchId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("BranchId1")
+                    b.Property<int>("BranchId")
                         .HasColumnType("int");
 
                     b.Property<string>("Departament")
@@ -1055,7 +1051,7 @@ namespace CourseFinalyProject.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BranchId1");
+                    b.HasIndex("BranchId");
 
                     b.ToTable("MilitaryServices");
                 });
@@ -1377,7 +1373,9 @@ namespace CourseFinalyProject.DataAccess.Migrations
                 {
                     b.HasOne("CourseFinalyProject.Entities.Concrete.Branch", null)
                         .WithMany("MilitaryServices")
-                        .HasForeignKey("BranchId1");
+                        .HasForeignKey("BranchId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("EmployeeExtenstionOFServiceLife", b =>

@@ -13,8 +13,9 @@ namespace CourseFinalyProject.DataAccess.Concrete.EntityFramework.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //  optionsBuilder.UseSqlServer("Server=DESKTOP-1UHH25N\\MYDB;Database=CBEDFinalProjectApi;User Id=sa;Password=2016;TrustServerCertificate=true");
-            optionsBuilder.UseSqlServer("Server=DESKTOP-BR15D31\\MYDB;Database=CBEDFinalProjectApi;User Id=sa;Password=2016;TrustServerCertificate=true");
+            //  optionsBuilder.UseSqlServer("Server=DESKTOP-1UHH25N\\MYDB;Database=CBEDFinalProjectApi;User Id=sa;Password=2016;TrustServerCertificate=true");            
+          //  optionsBuilder.UseSqlServer("Server=DESKTOP-K6T1BDK;Database=CBEDFinalProjectApi;User Id=sa;Password=2016;TrustServerCertificate=true");
+            optionsBuilder.UseSqlServer("Server = DESKTOP-K6T1BDK; Database = CBEDFinalProjectApi; TrustServerCertificate= True; MultipleActiveResultSets = true;User ID=sa;Password=2016");
         }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<EmployeeDocument> EmployeeDocuments { get; set; }
